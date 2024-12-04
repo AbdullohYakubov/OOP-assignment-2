@@ -12,19 +12,26 @@ import java.util.ArrayList;
  */
 public class Room extends GameObject {
     private ArrayList<Exit> exits;
-    private Exit exit;
+    private Exit exitToRetrieve;
     private ArrayList<Item> items;
-    private Item item;
+    private Item itemToRetrieve;
     private ArrayList<Feature> features;
-    private Feature feature;
+    private Feature featureToRetrieve;
     private ArrayList<Equipment> equipment;
-    private Equipment e;
+    private Equipment equipmentToRetrieve;
     private ArrayList<GameObject> gameObjects;
+    private boolean hasItem = false;
+    private boolean hasEquipment = false;
 
     public Room(){}
 
     public Room(String id, String name, String description, boolean hidden){
         super(id, name, description, hidden);
+        exits = new ArrayList<Exit>();
+        items = new ArrayList<Item>();
+        features = new ArrayList<Feature>();
+        equipment = new ArrayList<Equipment>();
+        gameObjects = new ArrayList<GameObject>();
     }
 
     public void setName(String name){
@@ -48,7 +55,13 @@ public class Room extends GameObject {
     }
 
     public Exit getExit(String id){
-        return exit; // by Id
+        for(Exit exit : exits){
+            if(exit.getId().equals(id)){
+                exitToRetrieve = exit;
+            }
+        }
+
+        return exitToRetrieve;
     }
 
     public ArrayList<Feature> getFeatures(){
@@ -56,11 +69,23 @@ public class Room extends GameObject {
     }
 
     public Feature getFeature(String id){
-        return feature; // by Id
+        for(Feature feature : features){
+            if(feature.getId().equals(id)){
+                featureToRetrieve = feature;
+            }
+        }
+
+        return featureToRetrieve;
     }
 
     public Feature getFeatureByName(String name){
-        return feature;
+        for(Feature feature : features){
+            if(feature.getName().equals(name)){
+                featureToRetrieve = feature;
+            }
+        }
+        
+        return featureToRetrieve;
     }
 
     public ArrayList<Item> getItems(){
@@ -68,11 +93,23 @@ public class Room extends GameObject {
     }
 
     public Item getItem(String id){
-        return item; // Retrieves an item by its ID.
+        for(Item item : items){
+            if(item.getId().equals(id)){
+                itemToRetrieve = item;
+            }
+        }
+
+        return itemToRetrieve;
     }
 
     public Item getItemByName(String name){
-        return item; // Retrieves an item by its ID.
+        for(Item item : items){
+            if(item.getName().equals(name)){
+                itemToRetrieve = item;
+            }
+        }
+
+        return itemToRetrieve;
     }
 
     public ArrayList<Equipment> getEquipments(){
@@ -80,11 +117,23 @@ public class Room extends GameObject {
     }
 
     public Equipment getEquipment(String id){
-        return e; // by Id
+        for(Equipment e : equipment){
+            if(e.getId().equals(id)){
+                equipmentToRetrieve = e;
+            }
+        }
+
+        return equipmentToRetrieve;
     } 
 
     public Equipment getEquipmentByName(String name){
-        return e; // by name
+        for(Equipment e : equipment){
+            if(e.getName().equals(name)){
+                equipmentToRetrieve = e;
+            }
+        }
+
+        return equipmentToRetrieve;
     }
 
     public ArrayList<GameObject> getAll(){
@@ -92,27 +141,57 @@ public class Room extends GameObject {
     } 
 
     public void addExit(Exit exit){
-        // Adds an exit to the room.
+        if(exit != null && !exits.contains(exit)){
+            exits.add(exit);
+        }
     }
 
     public void addFeature(Feature feature){
-        // Adds a feature to the room.
+        if(feature != null && !features.contains(feature)){
+            features.add(feature);
+        }
     }
 
     public void addItem(Item item){
-        // Adds an item to the room.
+        if(item != null && !items.contains(item)){
+            items.add(item);
+        }
     }
 
     public void addEquipment(Equipment equipment){
-        // Adds equipment to the room.
+        if(equipment != null && !this.equipment.contains(equipment)){
+            this.equipment.add(equipment);
+        }
     }
 
     public boolean hasItem(String itemName){
-        return false; // Checks if the room contains an item with the specified name.
+        // Checks if the room contains an item with the specified name.
+        if(!items.isEmpty()){
+            for(Item item : items){
+                if(item.getName().equals(itemName)){
+                    hasItem = true;
+                }
+            }
+        }else{
+            System.out.println("This room does not have any items!");
+        }
+
+        return hasItem; 
     }
 
     public boolean hasEquipment(String name){
-        return false; // Checks if the room contains equipment with the specified name.
+        // Checks if the room contains equipment with the specified name.
+        if(!equipment.isEmpty()){
+            for(Equipment e : equipment){
+                if(e.getName().equals(name)){
+                    hasEquipment = true;
+                }
+            }
+        }else{
+            System.out.println("This room does not have any equipment!");
+        }
+
+        return hasEquipment;
     }
 
     /**

@@ -24,18 +24,29 @@ public class Map {
      * @return a string describing the map and its rooms
      */
 
-    public Map(){}
+    public Map(){
+        rooms = new ArrayList<Room>();
+        currentRoom = new Room("0", "Foyer", "This is the entrance", false);
+    }
 
     public Room getCurrentRoom(){
         return this.currentRoom;
     }
 
-    public void setCurrentRoom(Room roomId){
-        // this.currentRoom = currentRoom;
+    public void setCurrentRoom(String roomId){
+        // Sets the current room based on the Id
+        for(Room room : rooms){
+            if(room.getId().equals(roomId)){
+                this.currentRoom = room;
+            }
+        }
     }
 
     public void addRoom(Room room){
         // Adds a room to the map.
+        if(room != null && !rooms.contains(room)){
+            rooms.add(room);
+        }     
     }
     
     @Override

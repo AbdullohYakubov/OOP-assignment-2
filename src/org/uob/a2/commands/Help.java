@@ -12,6 +12,17 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class Help extends Command {
+    private String topic; // Creates a new Help command for the specified topic.
 
-  
+    public Help(String topic){
+        this.topic = topic;
+    }
+
+    public String execute(GameState gameState){
+        return "Executes the help command. Provides detailed help information based on the specified topic or general game help if no specific topic is provided.";
+    }
+
+    public String toString(){
+        return "Returns a string representation of the help command, including its type and topic.";
+    }
 }

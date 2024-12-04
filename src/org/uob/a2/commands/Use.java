@@ -11,6 +11,21 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class Use extends Command {
+    private String equipmentName;
+    private String target;
 
+    public Use(String equipmentName, String target){
+        this.equipmentName = equipmentName;
+        this.target = target;
+    }
+
+    @Override
+    public String execute(GameState gameState){
+        return "Executes the use command. Checks if the player has the specified equipment and whether the equipment can interact with the target. If valid, the equipment is used on the target.";
+    }
+
+    public String toString(){
+        return "Returns a string representation of the use command, including its type, equipment, and target.";
+    }
   
 }

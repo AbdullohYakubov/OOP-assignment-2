@@ -1,5 +1,7 @@
 package org.uob.a2.gameobjects;
 
+import java.util.ArrayList;
+
 /**
  * Represents an exit in the game, allowing the player to move from one room to another.
  * 
@@ -9,11 +11,18 @@ package org.uob.a2.gameobjects;
  */
 public class Exit extends GameObject {
 
-    String nextRoom;
+    private String nextRoom;
+    // private ArrayList<String> exits;
    
     public Exit(String id, String name, String description, boolean hidden, String nextRoom){
         super(id, name, description, hidden);
         this.nextRoom = nextRoom;
+
+        // exits = new ArrayList<>();
+        // exits.add("north");
+        // exits.add("south");
+        // exits.add("east");
+        // exits.add("west");
     }
 
     public String getNextRoom(){

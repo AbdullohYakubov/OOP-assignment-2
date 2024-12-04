@@ -11,6 +11,18 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class Move extends Command {
+    private String direction; 
 
-  
+    public Move(String direction){
+        this.direction = direction;
+    }
+
+    @Override
+    public String execute(GameState gameState) {
+        return "Executes the move command. If the specified direction corresponds to an available exit in the current room, the player's location is updated to the connected room. Otherwise, no movement occurs.";
+    }
+
+    public String toString(){
+        return "Returns a string representation of the look command, including its type and target.";
+    }
 }

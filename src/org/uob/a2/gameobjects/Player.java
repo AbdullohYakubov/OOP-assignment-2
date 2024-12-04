@@ -14,13 +14,18 @@ public class Player {
     private String name;
     private ArrayList<Item> inventory;
     private ArrayList<Equipment> equipment;
-    private Item item;
-    private Equipment e;
+    private Item itemToRetrieve;
+    private Equipment equipmentToRetrieve;
+    private boolean hasItem = false;
+    private boolean hasEquipment = false;
+    // private Equipment e;
 
     public Player(){}
 
     public Player(String name){
         this.name = name;
+        inventory = new ArrayList<Item>();
+        equipment = new ArrayList<Equipment>();
     }
 
     public String getName(){
@@ -31,39 +36,86 @@ public class Player {
         return inventory;
     }
 
-    public boolean hasItem(String itemName){
-        return false; // Checks if the player has an item with the specified name in their inventory.
+    public Item getItem(String itemName){
+        // Retrieves an item from the player's inventory by its name.
+        if(!inventory.isEmpty()){
+            for(Item item : inventory){
+                if(item.getName().equals(itemName)){
+                    itemToRetrieve = item;
+                }
+            }
+        }else{
+            System.out.println("Your inventory is empty!");
+        }
+
+        return itemToRetrieve;
     }
 
-    // public Item getItem(String itemName){
-    //     // Retrieves an item from the player's inventory by its name.
-    // }
+    public boolean hasItem(String itemName){
+        // Checks if the player has an item with the specified name in their inventory.
+        if(!inventory.isEmpty()){
+            for(Item item : inventory){
+                if(item.getName().equals(itemName)){
+                    hasItem = true;
+                }
+            }
+        }else{
+            System.out.println("Your inventory is empty!");
+        }
 
-    public Item getItem(){
-        return this.item;
+        return hasItem;
     }
 
     public void addItem(Item item){
         // Adds an item to the player's inventory.
+        if(item != null && !inventory.contains(item)){
+            inventory.add(item);
+        }else{
+            System.out.println("There is no such an item or you already have it!");
+        }
     }
 
     public ArrayList<Equipment> getEquipment(){
         return equipment;
     }
 
-    public boolean hasEquipment(String equipmentName){
-        return false; // Checks if the player has equipment with the specified name.
+    public Equipment getEquipement(String equipmentName){
+        if(!equipment.isEmpty()){
+            for(Equipment e : equipment){
+                if(e.getName().equals(equipmentName)){
+                    equipmentToRetrieve = e;
+                }
+            }
+        }else{
+            System.out.println("Your equipment list is empty!");
+        }
+
+        return equipmentToRetrieve;
     }
 
-    public Equipment getEquipement(String equipmentName){
-        return e;
-    } 
+    public boolean hasEquipment(String equipmentName){
+        // Checks if the player has equipment with the specified name.
+        if(!equipment.isEmpty()){
+            for(Equipment e : equipment){
+                if(e.getName().equals(equipmentName)){
+                    hasEquipment = true;
+                }
+            }
+        }else{
+            System.out.println("Your equipment list is empty!");
+        }
+
+        return hasEquipment;
+    }
 
     public void addEquipment(Equipment equipment){
         // Adds a piece of equipment to the player's collection.
+        if(equipment != null && !this.equipment.contains(equipment)){
+            this.equipment.add(equipment);
+        }else{
+            System.out.println("There is no such a piece of equipment or you already have it!");
+        }
     }
-
-
 
     /**
      * Returns a string representation of the player's current state, including their name,
@@ -71,6 +123,7 @@ public class Player {
      *
      * @return a string describing the player, their inventory, and equipment
      */
+    
     @Override
     public String toString() {
         StringBuilder out = new StringBuilder("Player Name: " + this.name + "\nInventory:\n");

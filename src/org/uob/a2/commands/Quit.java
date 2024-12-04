@@ -11,6 +11,11 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class Quit extends Command {
+    public Quit(){}
 
+    @Override
+    public String execute(GameState gameState){
+        return "Executes the quit command. This implementation returns a game-over message along with the player's current status.";
+    }
  
 }

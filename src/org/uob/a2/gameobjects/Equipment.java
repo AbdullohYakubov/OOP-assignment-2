@@ -15,10 +15,12 @@ public class Equipment extends GameObject implements Usable {
         this.useInformation = useInformation;
     }
 
+    @Override
     public void setUseInformation(UseInformation useInformation){
         this.useInformation = useInformation;
     }
 
+    @Override
     public UseInformation getUseInformation(){
         return this.useInformation;
     }

@@ -11,6 +11,19 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class Drop extends Command {
+    private String item;
 
+    Drop(String item){
+        this.item = item;
+    }
+
+    @Override
+    public String execute(GameState gameState) {
+        return "Executes the drop command.";
+    }
+
+    public String toString(){
+        return "You dropped " + item; 
+    }
    
 }

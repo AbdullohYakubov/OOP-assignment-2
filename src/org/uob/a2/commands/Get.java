@@ -13,6 +13,7 @@ import org.uob.a2.gameobjects.*;
  */
 public class Get extends Command {
     private String item;
+    private String itemToPickUp;
 
     public Get(String item){
         this.item = item;
@@ -20,7 +21,24 @@ public class Get extends Command {
 
     @Override
     public String execute(GameState gameState) {
-        return "Executes the get command.";
+        if(gameState.getMap().getCurrentRoom().hasEquipment(item)){
+            for(Equipment e : gameState.getPlayer().getEquipment()){
+                if(!(e.getName().equals(item))){
+                    itemToPickUp = e.getName();
+                    gameState.getPlayer().addEquipment(e);
+                }
+            }
+        }
+        else if(gameState.getPlayer().hasItem(item)){
+            for(Item i : gameState.getPlayer().getInventory()){
+                if(!(i.getName().equals(item))){
+                    itemToPickUp = i.getName();
+                    gameState.getPlayer().addItem(i);(i);
+                }
+            }
+        }
+
+        return "The " + itemToPickUp + " has been picked up";
     }
 
     public String toString(){

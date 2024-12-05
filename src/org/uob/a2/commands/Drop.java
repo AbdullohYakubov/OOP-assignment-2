@@ -13,7 +13,6 @@ import org.uob.a2.gameobjects.*;
 public class Drop extends Command {
     private String item;
     private String itemToDrop;
-    // private boolean isDropped;
 
     public Drop(String item){
         this.item = item;
@@ -42,41 +41,10 @@ public class Drop extends Command {
             }
         }
 
-        return itemToDrop;
-        
-        // if(gameState.getPlayer().getInventory().contains(this.item) && !(gameState.getPlayer().getEquipment().contains(this.item))){
-        //     if(!(gameState.getPlayer().getInventory().isEmpty())){
-        //         for(Item item : gameState.getPlayer().getInventory()){
-        //             if(item.getName().equals(this.item)){
-        //                 gameState.getPlayer().getInventory().remove(item);
-        //                 isDropped = true;
-        //             }else{
-        //                 isDropped = false;
-        //             }
-        //         }
-        //     }else{
-        //         System.out.println("Your inventory is empty!");
-        //     }
-        // } 
-        // else if(!(gameState.getPlayer().getInventory().contains(this.item)) && gameState.getPlayer().getEquipment().contains(this.item)){
-        //     if(!(gameState.getPlayer().getEquipment().isEmpty())){
-        //         for(Equipment e : gameState.getPlayer().getEquipment()){
-        //             if(e.getName().equals(this.item)){
-        //                 gameState.getPlayer().getEquipment().remove(item);
-        //                 isDropped = true;
-        //             }else{
-        //                 isDropped = false;
-        //             }
-        //         }
-        //     }else{
-        //         System.out.println("Your inventory is empty!");
-        //     }
-        // }
-
+        return "The " + itemToDrop + " has been dropped";
     }
 
     public String toString(){
         return "You dropped " + item; 
     }
-   
 }

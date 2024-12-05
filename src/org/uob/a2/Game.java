@@ -76,6 +76,8 @@ public class Game {
         map.addRoom(guillotine);
         map.addRoom(kennelArea);
 
+        Player player = new Player("Abdullokh");
+
         System.out.println(foyer);
         
         foyer.addFeature(mainDoor);
@@ -83,6 +85,16 @@ public class Game {
         foyer.addFeature(mainDoor);
 
         System.out.println(foyer.getFeature("0"));
+        
+        GameState gs = new GameState(map, player);
+        gs.getPlayer().addItem(watermelon);
+        gs.getPlayer().addItem(padlockKey);
+        System.out.println(gs);
+        
+        Drop drop = new Drop("watermelon");
+        // System.out.println(drop);
+        drop.execute(gs);
+        System.out.println(gs);
     }
 
 }

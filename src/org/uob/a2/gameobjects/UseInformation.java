@@ -61,7 +61,7 @@ public class UseInformation {
     }
 
     public boolean isUsed(){
-        return false; // Checks if the object has already been used.
+        return this.isUsed; // Checks if the object has already been used.
     }
 
     /**

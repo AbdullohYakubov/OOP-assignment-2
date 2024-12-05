@@ -10,6 +10,7 @@ import org.uob.a2.gameobjects.*;
  * implementing the {@link #execute(GameState)} method.
  * </p>
  */
+
 public abstract class Command {
     public CommandType commandType;
     public String value; // optional value

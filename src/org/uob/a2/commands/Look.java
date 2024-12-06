@@ -23,11 +23,9 @@ public class Look extends Command {
         if(target.equals("room")){
             gameState.getMap().getCurrentRoom().getDescription();
         }
-        else if(gameState.getMap().getCurrentRoom().hasExit(target)){
+        else if(target.equals("exit")){
             for(Exit exit : gameState.getMap().getCurrentRoom().getExits()){
-                if(exit.getName().equals(target)){
-                    exit.getDescription();
-                }
+                exit.getDescription();
             }
         }
         else if(gameState.getMap().getCurrentRoom().hasFeature(target)){

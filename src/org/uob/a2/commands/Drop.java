@@ -42,6 +42,6 @@ public class Drop extends Command {
     }
 
     public String toString(){
-        return "You dropped " + item; 
+        return "drop " + item; 
     }
 }

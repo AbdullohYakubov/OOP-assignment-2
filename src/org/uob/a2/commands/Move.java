@@ -32,6 +32,6 @@ public class Move extends Command {
 
     public String toString(){
         // Returns a string representation of the look command, including its type and target.
-        return "You move " + this.direction;
+        return "move " + this.direction;
     }
 }

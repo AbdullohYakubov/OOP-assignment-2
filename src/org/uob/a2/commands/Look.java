@@ -55,8 +55,6 @@ public class Look extends Command {
 
     public String toString(){
         // Returns a string representation of the look command, including its type and target.
-        return "You look at " + this.target;
+        return "look " + this.target;
     }
-
-   
 }

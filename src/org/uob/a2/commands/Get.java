@@ -43,7 +43,7 @@ public class Get extends Command {
     }
 
     public String toString(){
-        return "You got " + item; 
+        return "get " + item; 
     }
    
 }

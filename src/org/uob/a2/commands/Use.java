@@ -21,11 +21,17 @@ public class Use extends Command {
 
     @Override
     public String execute(GameState gameState){
-        return "Executes the use command. Checks if the player has the specified equipment and whether the equipment can interact with the target. If valid, the equipment is used on the target.";
+        if(gameState.getPlayer().hasEquipment(equipmentName)){
+            for(Equipment e : gameState.getPlayer().getEquipment()){
+                if(e.getUseInformation().getTarget().equals(this.target)){
+                    return "The " + this.equipmentName + " has been used on " + this.target + ".";
+                }
+            }
+        }
+        return "The " + this.equipmentName + " cannot be used on " + this.target + "!";
     }
 
     public String toString(){
-        return "Returns a string representation of the use command, including its type, equipment, and target.";
+        return "use " + this.equipmentName + " on " + target;
     }
-  
 }

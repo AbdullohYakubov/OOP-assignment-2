@@ -72,6 +72,6 @@ public class Help extends Command {
     }
     
     public String toString(){
-        return "The help command displays information on how to play the game, including details about available commands, their syntax, and their purpose.\n - type help/help <command> to display the help command";
+        return this.topic == null ? "help" : "help " + this.topic;
     }
 }

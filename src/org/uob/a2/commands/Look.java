@@ -12,6 +12,7 @@ import org.uob.a2.gameobjects.*;
  */
 public class Look extends Command {
     private String target;
+    // private String itemToLookAt;
 
     public Look(String target){
         this.target = target;
@@ -19,12 +20,39 @@ public class Look extends Command {
 
     @Override
     public String execute(GameState gameState) {
-        return "Executes the look command. Provides descriptions based on the specified target:\r\n" + //
-                        "If the target is \"room\", it displays the room's description and all visible objects.\r\n" + //
-                        "If the target is \"exits\", it lists the visible exits in the room.\r\n" + //
-                        "If the target is \"features\", it lists additional visible features in the room.\r\n" + //
-                        "If the target matches an item, feature or equipment name, it displays the description of that object.\r\n" + //
-                        "Hidden objects are not included unless they are explicitly revealed in the game state.";
+        if(target.equals("room")){
+            gameState.getMap().getCurrentRoom().getDescription();
+        }
+        else if(gameState.getMap().getCurrentRoom().hasExit(target)){
+            for(Exit exit : gameState.getMap().getCurrentRoom().getExits()){
+                if(exit.getName().equals(target)){
+                    exit.getDescription();
+                }
+            }
+        }
+        else if(gameState.getMap().getCurrentRoom().hasFeature(target)){
+            for(Feature feature : gameState.getMap().getCurrentRoom().getFeatures()){
+                if(feature.getName().equals(target)){
+                    feature.getDescription();
+                }
+            }
+        }
+        else if(gameState.getMap().getCurrentRoom().hasEquipment(target)){
+            for(Equipment e : gameState.getMap().getCurrentRoom().getEquipments()){
+                if(e.getName().equals(target)){
+                    e.getDescription();
+                }
+            }
+        }
+        else if(gameState.getMap().getCurrentRoom().hasItem(target)){
+            for(Item i : gameState.getMap().getCurrentRoom().getItems()){
+                if(i.getName().equals(target)){
+                    i.getDescription();
+                }
+            }
+        }
+
+        return null;
     }
 
     public String toString(){

@@ -20,6 +20,8 @@ public class Room extends GameObject {
     private ArrayList<Equipment> equipment;
     private Equipment equipmentToRetrieve;
     private ArrayList<GameObject> gameObjects;
+    private boolean hasExit = false;
+    private boolean hasFeature = false;
     private boolean hasItem = false;
     private boolean hasEquipment = false;
 
@@ -162,6 +164,36 @@ public class Room extends GameObject {
         if(equipment != null && !this.equipment.contains(equipment)){
             this.equipment.add(equipment);
         }
+    }
+
+    public boolean hasExit(String exitName){
+        // Checks if the room contains an exit with the specified name.
+        if(!exits.isEmpty()){
+            for(Exit exit : exits){
+                if(exit.getName().equals(exitName)){
+                    hasExit = true;
+                }
+            }
+        }else{
+            System.out.println("This room does not have any exits!");
+        }
+
+        return hasExit; 
+    }
+
+    public boolean hasFeature(String featureName){
+        // Checks if the room contains a feature with the specified name.
+        if(!features.isEmpty()){
+            for(Feature feature : features){
+                if(feature.getName().equals(featureName)){
+                    hasFeature = true;
+                }
+            }
+        }else{
+            System.out.println("This room does not have any features!");
+        }
+
+        return hasFeature; 
     }
 
     public boolean hasItem(String itemName){

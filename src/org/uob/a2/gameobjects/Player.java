@@ -79,14 +79,17 @@ public class Player {
         return equipment;
     }
 
-    public Equipment getEquipement(String equipmentName){
+    public Equipment getEquipment(String equipmentName){
         if(!equipment.isEmpty()){
             for(Equipment e : equipment){
                 if(e.getName().equals(equipmentName)){
-                    equipmentToRetrieve = e;
+                    return e;
                 }
             }
-        }else{
+        }
+
+        // return null;
+        else{
             System.out.println("Your equipment list is empty!");
         }
 

@@ -12,7 +12,6 @@ import org.uob.a2.gameobjects.*;
  */
 public class Drop extends Command {
     private String item;
-    private String itemToDrop;
 
     public Drop(String item){
         this.item = item;
@@ -23,25 +22,23 @@ public class Drop extends Command {
         if(gameState.getPlayer().hasEquipment(item)){
             for(Equipment e : gameState.getPlayer().getEquipment()){
                 if(e.getName().equals(item)){
-                    itemToDrop = e.getName();
                     gameState.getPlayer().getEquipment().remove(e);
                     gameState.getMap().getCurrentRoom().addEquipment(e);
-                    break;
+                    return e.getName() + "has been dropped";
                 }
             }
         }
         else if(gameState.getPlayer().hasItem(item)){
             for(Item i : gameState.getPlayer().getInventory()){
                 if(i.getName().equals(item)){
-                    itemToDrop = i.getName();
                     gameState.getPlayer().getInventory().remove(i);
                     gameState.getMap().getCurrentRoom().addItem(i);
-                    break;
+                    return i.getName() + "has been dropped";
                 }
             }
         }
 
-        return "The " + itemToDrop + " has been dropped";
+        return "You don't have the " + this.item + " to drop!";
     }
 
     public String toString(){

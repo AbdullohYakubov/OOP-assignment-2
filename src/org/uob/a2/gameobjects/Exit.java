@@ -14,15 +14,9 @@ public class Exit extends GameObject {
     private String nextRoom;
     // private ArrayList<String> exits;
    
-    public Exit(String id, String name, String description, boolean hidden, String nextRoom){
+    public Exit(String id, String name, String description, String nextRoom, boolean hidden){
         super(id, name, description, hidden);
         this.nextRoom = nextRoom;
-
-        // exits = new ArrayList<>();
-        // exits.add("north");
-        // exits.add("south");
-        // exits.add("east");
-        // exits.add("west");
     }
 
     public String getNextRoom(){

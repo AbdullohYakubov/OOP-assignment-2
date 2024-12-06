@@ -19,7 +19,15 @@ public class Move extends Command {
 
     @Override
     public String execute(GameState gameState) {
-        return "Executes the move command. If the specified direction corresponds to an available exit in the current room, the player's location is updated to the connected room. Otherwise, no movement occurs.";
+        for(Exit exit : gameState.getMap().getCurrentRoom().getExits()){
+            if(exit.getName().equals(this.direction)){
+                String nextRoomId = exit.getNextRoom();
+                gameState.getMap().setCurrentRoom(nextRoomId);
+                return "You moved " + this.direction + ". You are now in " + gameState.getMap().getCurrentRoom().getName() + ".";
+            }
+        }
+
+        return "You cannot move " + this.direction + "!";
     }
 
     public String toString(){

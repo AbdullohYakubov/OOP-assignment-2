@@ -21,31 +21,31 @@ public class Look extends Command {
     @Override
     public String execute(GameState gameState) {
         if(target.equals("room")){
-            gameState.getMap().getCurrentRoom().getDescription();
+            return gameState.getMap().getCurrentRoom().getDescription();
         }
         else if(target.equals("exit")){
             for(Exit exit : gameState.getMap().getCurrentRoom().getExits()){
-                exit.getDescription();
+                return exit.getDescription();
             }
         }
         else if(gameState.getMap().getCurrentRoom().hasFeature(target)){
             for(Feature feature : gameState.getMap().getCurrentRoom().getFeatures()){
                 if(feature.getName().equals(target)){
-                    feature.getDescription();
+                    return feature.getDescription();
                 }
             }
         }
         else if(gameState.getMap().getCurrentRoom().hasEquipment(target)){
             for(Equipment e : gameState.getMap().getCurrentRoom().getEquipments()){
                 if(e.getName().equals(target)){
-                    e.getDescription();
+                    return e.getDescription();
                 }
             }
         }
         else if(gameState.getMap().getCurrentRoom().hasItem(target)){
             for(Item i : gameState.getMap().getCurrentRoom().getItems()){
                 if(i.getName().equals(target)){
-                    i.getDescription();
+                    return i.getDescription();
                 }
             }
         }

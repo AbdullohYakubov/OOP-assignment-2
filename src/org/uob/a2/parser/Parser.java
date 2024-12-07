@@ -18,15 +18,21 @@ public class Parser {
 
     public Command parse(ArrayList<Token> tokens) throws CommandErrorException{
         if(tokens.isEmpty()){
-            throw new CommandErrorException("Invalid Command!");
+            throw new CommandErrorException("Invalid Command! Please enter a valid command! Type\'help\' to see a list of available commands.");
+        }
+
+        // Checks if the order of command arguments is correct so that something like 'use key on' is not allowed
+        if(tokens.get(tokens.size() - 1).getTokenType() != TokenType.EOL){
+            throw new CommandErrorException("Invalid Command! Please enter a valid command! Type\'help\' to see a list of available commands.");
         }
 
         Token commandToken = tokens.get(0);
-        boolean isFirstWordCommand = commandToken.getTokenType() != TokenType.DROP && commandToken.getTokenType() != TokenType.GET && commandToken.getTokenType() != TokenType.HELP && commandToken.getTokenType() != TokenType.LOOK && commandToken.getTokenType() != TokenType.MOVE && commandToken.getTokenType() != TokenType.QUIT && commandToken.getTokenType() != TokenType.STATUS && commandToken.getTokenType() != TokenType.USE;
 
-        // checks if the first element is actually the command, so that something like chest use on key is not allowed
-        if(isFirstWordCommand){
-            throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
+        boolean isFirstWordCommand = commandToken.getTokenType() == TokenType.DROP || commandToken.getTokenType() == TokenType.GET || commandToken.getTokenType() == TokenType.HELP || commandToken.getTokenType() == TokenType.LOOK || commandToken.getTokenType() == TokenType.MOVE || commandToken.getTokenType() == TokenType.QUIT || commandToken.getTokenType() == TokenType.STATUS || commandToken.getTokenType() == TokenType.USE;
+
+        // checks if the first element is actually the command, so that something like 'chest use on key' is not allowed
+        if(!isFirstWordCommand){
+            throw new CommandErrorException("Invalid Command! Please enter a valid command! Type\'help\' to see a list of available commands.");
         }
 
         switch (commandToken.getTokenType()) {
@@ -59,7 +65,7 @@ public class Parser {
             
             case USE:
                 if(tokens.size() != 4){
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 proposition!");
                 }
 
                 // Checks if the second and the fourth words in the user input are actually treated as variables so that something like use on key chest is not allowed 

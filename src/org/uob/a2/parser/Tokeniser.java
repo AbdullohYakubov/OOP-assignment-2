@@ -26,6 +26,8 @@ public class Tokeniser {
     }
 
     public void tokenise(String s){
+        tokens.clear();
+
         String[] words = s.split("\\s+");
         Token token;
 
@@ -47,11 +49,10 @@ public class Tokeniser {
         for(int i = 1; i < words.length; i++){
             if(words[i].equals("on") || words[i].equals("with")){
                 token = new Token(TokenType.PREPOSITION, words[i]);
-                tokens.add(token);
             }else{
                 token = new Token(TokenType.VAR, words[i]);
-                tokens.add(token);
             }
+            tokens.add(token);
         }
 
         token = new Token(TokenType.EOL);

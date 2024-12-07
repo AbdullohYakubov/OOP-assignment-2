@@ -13,7 +13,9 @@ import java.util.ArrayList;
 public class Tokeniser {
     private ArrayList<Token> tokens;
 
-    public Tokeniser(){}
+    public Tokeniser(){
+        tokens = new ArrayList<Token>();
+    }
    
     public ArrayList<Token> getTokens(){
         return this.tokens;
@@ -33,18 +35,17 @@ public class Tokeniser {
             return;
         }
 
-        for(int i = 0; i < words.length; i++){
-            if(i == 0){
-                try{
-                    TokenType tokenType = TokenType.valueOf(words[0].toUpperCase());
-                    token = new Token(tokenType);
-                    tokens.add(token);
-                }catch(IllegalArgumentException iae){
-                    token = new Token(TokenType.ERROR);
-                    tokens.add(token);
-                }
-            }
-            else if(words[i].equals("on") || words[i].equals("with")){
+        try{
+            TokenType tokenType = TokenType.valueOf(words[0].toUpperCase());
+            token = new Token(tokenType);
+            tokens.add(token);
+        }catch(IllegalArgumentException iae){
+            token = new Token(TokenType.ERROR);
+            tokens.add(token);
+        }
+
+        for(int i = 1; i < words.length; i++){
+            if(words[i].equals("on") || words[i].equals("with")){
                 token = new Token(TokenType.PREPOSITION, words[i]);
                 tokens.add(token);
             }else{

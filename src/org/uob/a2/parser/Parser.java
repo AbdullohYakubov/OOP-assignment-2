@@ -21,44 +21,58 @@ public class Parser {
             throw new CommandErrorException("Invalid Command!");
         }
 
-        for(Token token : tokens){
-            if(token.getTokenType().name().equals("DROP")){
-                String item = tokens.get(1).getValue();
-                return new Drop(item);
-            }
-            else if(token.getTokenType().name().equals("GET")){
-                String item = tokens.get(1).getValue();
-                return new Get(item);
-            }
-            else if(token.getTokenType().name().equals("HELP")){
-                if(tokens.size() == 1){
-                    return new Help(null);
-                }else if(tokens.size() == 2){
-                    String item = tokens.get(1).getValue();
-                    return new Help(item);
-                }
-            }
-            else if(token.getTokenType().name().equals("LOOK")){
-                String item = tokens.get(1).getValue();
-                return new Look(item);
-            }
-            else if(token.getTokenType().name().equals("MOVE")){
-                String item = tokens.get(1).getValue();
-                return new Move(item);
-            }
-            else if(token.getTokenType().name().equals("QUIT")){
-                return new Quit();
-            }
-            else if(token.getTokenType().name().equals("STATUS")){
-                String item = tokens.get(1).getValue();
-                return new Status(item);
-            }else if(token.getTokenType().name().equals("USE")){
-                String item = tokens.get(1).getValue();
-                String target = tokens.get(3).getValue();
-                return new Use(item, target);
+        Token commandToken = tokens.get(0);
+        // checks if the first element is actually the command, so that something like chest use on key is not allowed
+        for(TokenType tokenType : TokenType.values()){
+            while(commandToken.getTokenType() != tokenType){
+                throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
             }
         }
 
-        return null;
+        switch (commandToken.getTokenType()) {
+            case DROP:
+            case GET:
+            case LOOK:
+            case MOVE:
+            case STATUS:
+                if(tokens.size() != 2){
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                }
+                String arg = tokens.get(1).getValue();
+                return new Drop(arg);
+            
+            case HELP:
+                if(tokens.size() == 1){
+                    return new Help(null);
+                }else if(tokens.size() == 2){
+                    String topic = tokens.get(1).getValue();
+                    return new Help(topic);
+                }else{
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " can have 1 or no argument");
+                }
+            
+            case QUIT:
+                if(tokens.size() != 1){
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " cannot take any argument!");
+                }
+                return new Quit();
+            
+            case USE:
+                if(tokens.size() != 4){
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 4 arguments!");
+                }
+
+                String item = tokens.get(1).getValue();
+                String target = tokens.get(3).getValue();
+
+                // Checks if the second and the fourth words in the user input are actually treated as variables so that something like use on key chest is not allowed 
+                while(item.toUpperCase() != TokenType.VAR.name() || target.toUpperCase() != TokenType.VAR.name()){
+                    throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
+                }
+                return new Use(item, target);
+        
+            default:
+                throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
+        }
     }
 }

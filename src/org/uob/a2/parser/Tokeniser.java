@@ -35,14 +35,13 @@ public class Tokeniser {
 
         for(int i = 0; i < words.length; i++){
             if(i == 0){
-                for(TokenType tokenType : TokenType.values()){
-                    if(tokenType.name().equals(words[0])){
-                        token = new Token(tokenType);
-                        tokens.add(token);
-                    }else{
-                        token = new Token(TokenType.ERROR);
-                        tokens.add(token);
-                    }
+                try{
+                    TokenType tokenType = TokenType.valueOf(words[0].toUpperCase());
+                    token = new Token(tokenType);
+                    tokens.add(token);
+                }catch(IllegalArgumentException iae){
+                    token = new Token(TokenType.ERROR);
+                    tokens.add(token);
                 }
             }
             else if(words[i].equals("on") || words[i].equals("with")){

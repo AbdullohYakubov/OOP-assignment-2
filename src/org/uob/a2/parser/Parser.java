@@ -22,11 +22,11 @@ public class Parser {
         }
 
         Token commandToken = tokens.get(0);
+        boolean isFirstWordCommand = commandToken.getTokenType() != TokenType.DROP && commandToken.getTokenType() != TokenType.GET && commandToken.getTokenType() != TokenType.HELP && commandToken.getTokenType() != TokenType.LOOK && commandToken.getTokenType() != TokenType.MOVE && commandToken.getTokenType() != TokenType.QUIT && commandToken.getTokenType() != TokenType.STATUS && commandToken.getTokenType() != TokenType.USE;
+
         // checks if the first element is actually the command, so that something like chest use on key is not allowed
-        for(TokenType tokenType : TokenType.values()){
-            while(commandToken.getTokenType() != tokenType){
-                throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
-            }
+        if(isFirstWordCommand){
+            throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
         }
 
         switch (commandToken.getTokenType()) {
@@ -59,16 +59,16 @@ public class Parser {
             
             case USE:
                 if(tokens.size() != 4){
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 4 arguments!");
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                }
+
+                // Checks if the second and the fourth words in the user input are actually treated as variables so that something like use on key chest is not allowed 
+                if(tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.VAR){
+                    throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
                 }
 
                 String item = tokens.get(1).getValue();
                 String target = tokens.get(3).getValue();
-
-                // Checks if the second and the fourth words in the user input are actually treated as variables so that something like use on key chest is not allowed 
-                while(item.toUpperCase() != TokenType.VAR.name() || target.toUpperCase() != TokenType.VAR.name()){
-                    throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
-                }
                 return new Use(item, target);
         
             default:

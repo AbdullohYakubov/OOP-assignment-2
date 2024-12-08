@@ -60,6 +60,11 @@ public enum TokenType {
     MOVE,
 
     /**
+     * Represents the "combine" command.
+     */
+    COMBINE,
+
+    /**
      * Represents a preposition such as "on", "with", or "using".
      */
     PREPOSITION,

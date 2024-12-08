@@ -25,6 +25,14 @@ public class GameState {
         this.player = player;
     }
 
+    public void setMap(Map map){
+        this.map = map;
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+
     public Map getMap(){
         return this.map;
     }

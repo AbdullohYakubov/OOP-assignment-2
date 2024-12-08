@@ -64,14 +64,15 @@ public class Parser {
                 return new Quit();
             
             case USE:
-                if(tokens.size() != 4){
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
-                }
+            case COMBINE:
+                // if(tokens.size() != 4){
+                //     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                // }
 
                 // Checks if the second and the fourth words in the user input are actually treated as variables so that something like use on key chest is not allowed 
-                if(tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.VAR){
-                    throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
-                }
+                // if(tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.VAR){
+                //     throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
+                // }
 
                 String item = tokens.get(1).getValue();
                 String target = tokens.get(3).getValue();

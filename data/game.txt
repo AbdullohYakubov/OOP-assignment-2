@@ -1,9 +1,9 @@
 player:Abdullokh
-map:r1
+map:m1
     room:r1,Parking,Dark empty parking space eerily void of its expected car.,false
         exit:e1,east,A door to the east,r2,false
         exit:e2,south,A door to the south,r4,false
-     room:r2,Guillotine Area,A chilling oppressive space where a rusted guillotine stands waiting for its grim purpose after days of captivity.,false
+    room:r2,Guillotine Area,A chilling oppressive space where a rusted guillotine stands waiting for its grim purpose after days of captivity.,false
         exit:e3,west,A door to the west,r1,false
         exit:e4,east,A door to the east,r3,false
         exit:e5,south,A door to the south,r5,false

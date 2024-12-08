@@ -15,6 +15,20 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class GameStateFileParser {
+    private static GameState gs;
+    
+    public GameStateFileParser(){}
 
-   
+    public static GameState parse(String filename){
+        try {
+            FileReader reader = new FileReader("C:\\Users\\user\\Desktop\\OOP-assignment-2\\data\\game.txt");
+            reader.read();
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("File not found!");
+        } catch (IOException ioe) {
+            System.out.println("File not found!");      
+        }
+
+        return gs;
+    }
 }

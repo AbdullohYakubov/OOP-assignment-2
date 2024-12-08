@@ -1,10 +1,50 @@
-player:pieter
+player:Abdullokh
 map:r1
-    room:r1,test room,This is a test room for testing. It's bland.,false
-        equipment:k0,key,An old rusty key,false,open,c1,rb1,You use the rusty key to open the chest. Something falls to the floor...
-        container:c1,chest,A solid oak chest.,false
-        equipment:rb1,ruby,A red ruby,true,reveal,r1,e1,You active the ruby! Hidden objects become visible!
-        item:d1,diamond,A test diamond,false
-        exit:e1,north,A door to the north,r2,true
-     room:r2,second room, This is the second testing room. It's even more bland.,false
-        exit:e2,south,A door to the south,r1,false
+    room:r1,Parking,Dark empty parking space eerily void of its expected car.,false
+        exit:e1,east,A door to the east,r2,false
+        exit:e2,south,A door to the south,r4,false
+     room:r2,Guillotine Area,A chilling oppressive space where a rusted guillotine stands waiting for its grim purpose after days of captivity.,false
+        exit:e3,west,A door to the west,r1,false
+        exit:e4,east,A door to the east,r3,false
+        exit:e5,south,A door to the south,r5,false
+        feature:f1,guillotine,An apparatus used to behead captives.,false
+        item:i1,key,A main key used to unlock the main door.,true
+    room:r3,Kennel Area,A dark grimy area with a kennel tucked in the corner.,false
+        exit:e6,west,A door to the west,r2,false
+        exit:e7,south,A door to the south,r6,false
+        feature:f2,kennel,Small wooden shelter whose door is secured tightly with a screw lock.,false
+        item:i2,padlock key,A key used to unlock the padlock.,true
+    room:r4,Storage Room,A cramped shadowy storage room with dusty shelves lining the walls.,false
+        exit:e8,north,A door to the north,r1,false
+        exit:e9,east,A door to the east,r5,false
+        container:c1,jar,A cracked glass container with reddish liquid sitting on a shelf.,false
+        equipment:eq1,screwdriver,A tool used to open screw locks.,true,open,f2,i2,You used the screwdriver to open the kennel and found the screwdriver!
+    room:r5,Dining Room,This is Granny's dining room where she enjoys the soup. There is nothing really special about this room.,false
+        exit:e10,west,A door to the west,r4,false
+        exit:e11,north,A door to the north,r2,false
+        exit:e12,east,A door to the east,r6,false
+        exit:e13,south,A door to the south,r9,false
+    room:r6,Living Room,Shadowy room with silence and unsettling creaking floorboards.,false
+        exit:e14,west,A door to the west,r5,false
+        exit:e15,north,A door to the north,r3,false
+        exit:e16,east,A door to the east,r7,false
+        exit:e17,south,A door to the south,r10,false
+    room:r7,Bedroom 1,A dark cramped bedroom with peeling wallpaper and creaky floors.,false
+        exit:e18,west,A door to the west,r6,false
+        exit:e19,east,A door to the east,r8,false
+        feature:f3,bed,Granny's bed: it has a bleak unsettling appearance. It's old and made of wood that's chipped and splintered in places. On the thin sagging mattress there lies a hidden item that Granny carries with her all the time.,false
+        equipment:eq2,hammer,A tool used to break wooden things.,true,break,f7,null,You broke the planks using the hammer!
+    room:r8,Toilet,A claustrophobic grimy toilet with dark stains on cracked tiles.,false
+        exit:e20,west,A door to the west,r7,false
+        feature:f4,bathtub,Rusty bathtub smeared with blood stains hiding something unsettling.,false
+        item:i3,code,A code written on a yellowish piece of paper used to unlock the safelock.,true
+    room:r9,Kitchen,This is Granny's kitchen where she cooks her favourite human blood soup.,false
+        exit:e21,north,A door to the north,r5,false
+        exit:e22,east,A door to the east,r10,false
+        feature:f5,fridge,An old fridge with a worn and slightly rusted exterior with faded colors in the corner of the room.,false
+        item:i4,watermelon,A suspicious-looking watermelon.,true
+    room:r10,Foyer,This is the foyer of Granny's house. This is the only exit in the house. The door is locked in four ways: door lock; padlock; safelock; and planks.,false
+        exit:e23,west,A door to the west,r9,false
+        exit:e24,north,A door to the north,r6,false
+        feature:f6,main exit door,The only exit in the house.,false
+        feature:f7,planks,Wodden planks that obscure the main door.,false

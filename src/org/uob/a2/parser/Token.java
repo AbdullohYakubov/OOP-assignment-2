@@ -28,5 +28,4 @@ public class Token {
     public String getValue(){
         return this.value;
     }
-   
 }

@@ -23,7 +23,8 @@ public class Use extends Command {
     public String execute(GameState gameState){
         if(gameState.getPlayer().hasEquipment(equipmentName)){
             for(Equipment e : gameState.getPlayer().getEquipment()){
-                if(e.getUseInformation().getTarget().equals(this.target)){
+                if(e.getUseInformation().getTarget().equals(this.target) && e.getUseInformation().isUsed() == false){
+                    e.getUseInformation().setUsed(true);
                     return "The " + this.equipmentName + " has been used on " + this.target + ".";
                 }
             }
@@ -32,6 +33,6 @@ public class Use extends Command {
     }
 
     public String toString(){
-        return "use " + this.equipmentName + " on " + target;
+        return "use " + this.equipmentName + " on " + this.target;
     }
 }

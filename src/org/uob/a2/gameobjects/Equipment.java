@@ -26,7 +26,8 @@ public class Equipment extends GameObject implements Usable {
     }
 
     public String use(GameObject target, GameState gameState){
-        return "a string describing the result of using the equipment";
+
+        return "";
     }
 
     @Override

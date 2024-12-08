@@ -57,17 +57,5 @@ public class Tokeniser {
 
         token = new Token(TokenType.EOL);
         tokens.add(token);
-
-        // if(words.length == 2 && words[1] != null){
-        //     token = new Token(TokenType.VAR, words[1]);
-        //     tokens.add(token);
-        // }
-
-        // if(words.length == 4 && words[2] != null && words[3] != null){
-        //     token = new Token(TokenType.PREPOSITION, words[2]);
-        //     tokens.add(token);
-        //     token = new Token(TokenType.VAR, words[3]);
-        //     tokens.add(token);
-        // }
     }
 }

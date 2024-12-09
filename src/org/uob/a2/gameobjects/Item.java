@@ -21,6 +21,36 @@ public class Item extends GameObject {
     }
 
     @Override
+    public void setName(String name){
+        this.name = name;
+    }
+
+    @Override
+    public void setDescription(String description){
+        this.description = description;
+    }
+
+    @Override
+    public void setHidden(boolean hidden){
+        this.hidden = hidden;
+    }
+
+    @Override
+    public String getName(){
+        return this.name;
+    }
+
+    @Override
+    public String getDescription(){
+        return this.description;
+    }
+
+    @Override
+    public boolean getHidden(){
+        return this.hidden;
+    }
+
+    @Override
     public String toString() {
         return super.toString();
     }

@@ -37,20 +37,44 @@ public class Parser {
 
         switch (commandToken.getTokenType()) {
             case DROP:
+                if(tokens.size() != 3){
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                }
+                String itemToDrop = tokens.get(1).getValue();
+                return new Drop(itemToDrop);
+
             case GET:
+                if(tokens.size() != 3){
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                }
+                String itemToPickUp = tokens.get(1).getValue();
+                return new Get(itemToPickUp);
+            
             case LOOK:
+                if(tokens.size() != 3){
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                }
+                String param = tokens.get(1).getValue();
+                return new Look(param);
+
             case MOVE:
+                if(tokens.size() != 3){
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                }
+                String direction = tokens.get(1).getValue();
+                return new Move(direction);
+            
             case STATUS:
-                if(tokens.size() != 2){
+                if(tokens.size() != 3){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
                 }
                 String arg = tokens.get(1).getValue();
-                return new Drop(arg);
+                return new Move(arg);
             
             case HELP:
-                if(tokens.size() == 1){
+                if(tokens.size() == 2){
                     return new Help(null);
-                }else if(tokens.size() == 2){
+                }else if(tokens.size() == 3){
                     String topic = tokens.get(1).getValue();
                     return new Help(topic);
                 }else{
@@ -58,21 +82,21 @@ public class Parser {
                 }
             
             case QUIT:
-                if(tokens.size() != 1){
+                if(tokens.size() != 2){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " cannot take any argument!");
                 }
                 return new Quit();
             
             case USE:
-            case COMBINE:
-                // if(tokens.size() != 4){
-                //     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
-                // }
+            // case COMBINE:
+                if(tokens.size() != 5){
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                }
 
                 // Checks if the second and the fourth words in the user input are actually treated as variables so that something like use on key chest is not allowed 
-                // if(tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.VAR){
-                //     throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
-                // }
+                if(tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.VAR){
+                    throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
+                }
 
                 String item = tokens.get(1).getValue();
                 String target = tokens.get(3).getValue();

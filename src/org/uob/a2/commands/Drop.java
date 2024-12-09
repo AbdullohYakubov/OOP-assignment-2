@@ -38,7 +38,7 @@ public class Drop extends Command {
             }
         }
 
-        return "You don't have the " + this.item + " to drop!";
+        return "You cannot drop " + this.item;
     }
 
     public String toString(){

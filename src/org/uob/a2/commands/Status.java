@@ -13,8 +13,8 @@ import org.uob.a2.gameobjects.*;
  */
 public class Status extends Command {
     private String topic;
-    private String inventoryStatus = "You have the following items in your inventory:\n";
-    private String equipmentStatus = "You have the following pieces of equipment in your equipment list:\n";
+    private String items = "You have the following items:\n";
+    private String equipment = "You have the following equipment:\n";
 
     public Status(String topic){
         this.topic = topic;
@@ -25,15 +25,17 @@ public class Status extends Command {
         if(this.topic.equals("inventory")){
             if(!(gameState.getPlayer().getInventory().isEmpty())){
                 for(Item i : gameState.getPlayer().getInventory()){
-                    return inventoryStatus + i.getName() + "\n";
+                    return items + i.getName() + "\n";
                 }
             }
-        }else if(this.topic.equals("equipment")){
             if(!(gameState.getPlayer().getEquipment().isEmpty())){
                 for(Equipment e : gameState.getPlayer().getEquipment()){
-                    return equipmentStatus + e.getName() + "\n";
+                    return equipment + e.getName() + "\n";
                 }
             }
+
+            return items + equipment;
+
         }else if(this.topic.equals("player")){
             return gameState.getPlayer().toString();
 
@@ -51,7 +53,7 @@ public class Status extends Command {
             }
         }
 
-        return "Invalid command!";
+        return "";
     }
 
     public String toString(){

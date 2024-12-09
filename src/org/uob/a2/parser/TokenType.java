@@ -62,7 +62,7 @@ public enum TokenType {
     /**
      * Represents the "combine" command.
      */
-    COMBINE,
+    // COMBINE,
 
     /**
      * Represents a preposition such as "on", "with", or "using".

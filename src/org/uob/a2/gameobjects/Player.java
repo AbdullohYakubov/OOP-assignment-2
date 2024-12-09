@@ -44,9 +44,10 @@ public class Player {
                     itemToRetrieve = item;
                 }
             }
-        }else{
-            System.out.println("Your inventory is empty!");
         }
+        // else{
+            // System.out.println("Your inventory is empty!");
+        // }
 
         return itemToRetrieve;
     }
@@ -59,9 +60,10 @@ public class Player {
                     hasItem = true;
                 }
             }
-        }else{
-            System.out.println("Your inventory is empty!");
         }
+        // else{
+        //     System.out.println("Your inventory is empty!");
+        // }
 
         return hasItem;
     }

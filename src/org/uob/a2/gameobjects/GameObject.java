@@ -32,15 +32,15 @@ public abstract class GameObject {
     }
 
     public void setName(String name){
-        name = this.name;
+        this.name = name;
     }
 
     public void setDescription(String description){
-        description = this.description;
+        this.description = description;
     }
 
     public void setHidden(boolean hidden){
-        hidden = this.hidden;
+        this.hidden = hidden;
     }
 
     public String getId(){

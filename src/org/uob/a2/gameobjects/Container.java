@@ -22,8 +22,20 @@ public class Container extends Feature {
      */
 
     @Override
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setHidden(boolean hidden){
+        this.hidden = hidden;
+    }
+    
     public String getName(){
         return this.name;
+    }
+
+    public boolean getHidden(){
+        return this.hidden;
     }
 
     @Override

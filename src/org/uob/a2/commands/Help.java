@@ -54,7 +54,7 @@ public class Help extends Command {
             return "QUIT Command: Use the 'quit' command to quit the game.";
         }
         else if(this.topic == "status"){
-            return "STATUS Command: Use the 'status' command to see the status of the player, equipment list, or inventory";
+            return "STATUS Command: Use the 'status' command to see the status of the player or inventory";
         }
         else if(this.topic == "use"){
             return "USE Command: Use the 'use' command to use equipment on/with something (e.g. a feature).";

@@ -39,6 +39,8 @@ public class Map {
             if(room.getId().equals(roomId)){
                 this.currentRoom = room;
             }
+            
+            this.currentRoom = null;
         }
     }
 

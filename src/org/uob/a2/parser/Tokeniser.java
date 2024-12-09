@@ -42,7 +42,7 @@ public class Tokeniser {
             token = new Token(tokenType);
             tokens.add(token);
         }catch(IllegalArgumentException iae){
-            token = new Token(TokenType.ERROR);
+            token = new Token(TokenType.VAR);
             tokens.add(token);
         }
 

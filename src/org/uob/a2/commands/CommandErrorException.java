@@ -14,6 +14,10 @@ public class CommandErrorException extends Exception {
         this.error = error;
     }
 
+    public String getMessage(){
+        return this.error;
+    }
+
     /**
      * Returns a string representation of the exception, including its message.
      *

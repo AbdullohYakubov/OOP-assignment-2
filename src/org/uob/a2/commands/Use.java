@@ -21,15 +21,23 @@ public class Use extends Command {
 
     @Override
     public String execute(GameState gameState){
-        if(gameState.getPlayer().hasEquipment(equipmentName)){
-            for(Equipment e : gameState.getPlayer().getEquipment()){
-                if(e.getUseInformation().getTarget().equals(this.target) && e.getUseInformation().isUsed() == false){
-                    e.getUseInformation().setUsed(true);
-                    return "The " + this.equipmentName + " has been used on " + this.target + ".";
+        if(gameState.getPlayer().hasEquipment(equipmentName)) {
+            for(Equipment e : gameState.getPlayer().getEquipment()) {
+                if(e.getName().equals(equipmentName)) {
+                    if(e.getUseInformation().isUsed()) {
+                        return "You have already used " + equipmentName;
+                    }
+        
+                    if(e.getUseInformation().getTarget().equals(this.target)) {
+                        e.getUseInformation().setUsed(true);
+                        return e.getUseInformation().getMessage();
+                    }else {
+                        return "Invalid use target";
+                    }
                 }
             }
         }
-        return "The " + this.equipmentName + " cannot be used on " + this.target + "!";
+        return "You do not have " + this.equipmentName;
     }
 
     public String toString(){

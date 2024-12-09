@@ -89,9 +89,9 @@ public class Player {
         }
 
         // return null;
-        else{
-            System.out.println("Your equipment list is empty!");
-        }
+        // else{
+        //     System.out.println("Your equipment list is empty!");
+        // }
 
         return equipmentToRetrieve;
     }
@@ -104,9 +104,10 @@ public class Player {
                     hasEquipment = true;
                 }
             }
-        }else{
-            System.out.println("Your equipment list is empty!");
         }
+        // else{
+        //     System.out.println("Your equipment list is empty!");
+        // }
 
         return hasEquipment;
     }

@@ -23,6 +23,11 @@ public class Exit extends GameObject {
         return this.nextRoom;
     }
 
+    @Override
+    public void setHidden(boolean hidden){
+        this.hidden = hidden;
+    }
+
     /**
      * Returns a string representation of the exit, including attributes inherited from {@code GameObject}
      * and the identifier of the next room.

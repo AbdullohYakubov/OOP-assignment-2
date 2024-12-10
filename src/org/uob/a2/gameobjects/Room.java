@@ -20,10 +20,10 @@ public class Room extends GameObject {
     private ArrayList<Equipment> equipment;
     private Equipment equipmentToRetrieve;
     private ArrayList<GameObject> gameObjects;
-    private boolean hasExit = false;
-    private boolean hasFeature = false;
-    private boolean hasItem = false;
-    private boolean hasEquipment = false;
+    // private boolean hasExit;
+    // private boolean hasFeature;
+    // private boolean hasItem;
+    // private boolean hasEquipment;
 
     public Room(){}
 
@@ -171,14 +171,17 @@ public class Room extends GameObject {
         if(!exits.isEmpty()){
             for(Exit exit : exits){
                 if(exit.getName().equals(exitName)){
-                    hasExit = true;
+                    return true;
                 }
             }
-        }else{
-            System.out.println("This room does not have any exits!");
-        }
 
-        return hasExit; 
+            return false;
+        }
+        // else{
+        //     System.out.println("This room does not have any exits!");
+        // }
+
+        return false; 
     }
 
     public boolean hasFeature(String featureName){
@@ -186,14 +189,17 @@ public class Room extends GameObject {
         if(!features.isEmpty()){
             for(Feature feature : features){
                 if(feature.getName().equals(featureName)){
-                    hasFeature = true;
+                    return true;
                 }
             }
-        }else{
-            System.out.println("This room does not have any features!");
-        }
 
-        return hasFeature; 
+            return false;
+        }
+        // else{
+        //     System.out.println("This room does not have any features!");
+        // }
+
+        return false; 
     }
 
     public boolean hasItem(String itemName){
@@ -201,14 +207,17 @@ public class Room extends GameObject {
         if(!items.isEmpty()){
             for(Item item : items){
                 if(item.getName().equals(itemName)){
-                    hasItem = true;
+                    return true;
                 }
             }
-        }else{
-            System.out.println("This room does not have any items!");
-        }
 
-        return hasItem; 
+            return false;
+        }
+        // else{
+        //     System.out.println("This room does not have any items!");
+        // }
+
+        return false; 
     }
 
     public boolean hasEquipment(String name){
@@ -216,14 +225,17 @@ public class Room extends GameObject {
         if(!equipment.isEmpty()){
             for(Equipment e : equipment){
                 if(e.getName().equals(name)){
-                    hasEquipment = true;
+                    return true;
                 }
             }
-        }else{
-            System.out.println("This room does not have any equipment!");
-        }
 
-        return hasEquipment;
+            return false;
+        }
+        // else{
+        //     System.out.println("This room does not have any equipment!");
+        // }
+
+        return false;
     }
 
     /**

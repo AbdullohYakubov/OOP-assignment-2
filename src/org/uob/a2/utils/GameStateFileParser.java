@@ -15,7 +15,7 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class GameStateFileParser {
-    private static GameState gameState = null;
+    private static GameState gameState;
     private static Player player;
     private static Map map;
     private static Room room;
@@ -29,6 +29,10 @@ public class GameStateFileParser {
     public GameStateFileParser(){}
 
     public static GameState parse(String filename){
+        gameState = new GameState(map, player);
+        map = new Map();
+        gameState.setMap(map);
+
         try {
             FileReader fileReader = new FileReader(filename);
             BufferedReader reader = new BufferedReader(fileReader);
@@ -39,7 +43,7 @@ public class GameStateFileParser {
                     int colonAt = line.indexOf(":");
                     String subLine = line.substring(colonAt + 1);
                     String[] args = subLine.split("[,]", 0);
-                    player = new Player(args[1]);
+                    player = new Player(args[0]);
                     gameState.setPlayer(player);
                 }else if(line.startsWith("map")){
                     map = new Map();

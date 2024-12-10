@@ -11,29 +11,32 @@ package org.uob.a2.gameobjects;
  */
 public class Container extends Feature {
 
-    public Container(String id, String name, String description, boolean hidden) {
-        super(id, name, description, hidden);
-    }
-
     /**
      * Returns a string representation of the container.
      *
      * @return a string containing the container's id, name, description, and hidden status
      */
 
+    public Container(String id, String name, String description, boolean hidden) {
+        super(id, name, description, hidden);
+    }
+
     @Override
     public void setName(String name){
         this.name = name;
     }
 
+    @Override
     public void setHidden(boolean hidden){
         this.hidden = hidden;
     }
     
+    @Override
     public String getName(){
         return this.name;
     }
 
+    @Override
     public boolean getHidden(){
         return this.hidden;
     }

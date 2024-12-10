@@ -20,12 +20,20 @@ public class Get extends Command {
 
     @Override
     public String execute(GameState gameState) {
+        if(!gameState.getPlayer().getInventory().isEmpty()){
+            for(Item i : gameState.getPlayer().getInventory()){
+                if(i.getName().equals(this.item)){
+                    return "You already have " + this.item;
+                }
+            }
+        }
+        
         if(gameState.getMap().getCurrentRoom().hasEquipment(item)){
             for(Equipment e : gameState.getMap().getCurrentRoom().getEquipments()){
                 if(e.getName().equals(item)){
                     gameState.getPlayer().addEquipment(e);
                     gameState.getMap().getCurrentRoom().getEquipments().remove(e);
-                    return e.getName() + " has been picked up!";
+                    return "You pick up: " + this.item;
                 }
             }
         }
@@ -34,12 +42,12 @@ public class Get extends Command {
                 if(i.getName().equals(item)){
                     gameState.getPlayer().addItem(i);
                     gameState.getMap().getCurrentRoom().getItems().remove(i);
-                    return i.getName() + " has been picked up!";
+                    return "You pick up: " + this.item;
                 }
             }
         }
 
-        return "There is no " + this.item + " in this room!";
+        return "No " + this.item + " to get.";
     }
 
     public String toString(){

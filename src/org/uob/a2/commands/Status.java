@@ -13,8 +13,8 @@ import org.uob.a2.gameobjects.*;
  */
 public class Status extends Command {
     private String topic;
-    private String items = "You have the following items:\n";
-    private String equipment = "You have the following equipment:\n";
+    private String items = "";
+    private String equipment = "";
 
     public Status(String topic){
         this.topic = topic;
@@ -23,18 +23,18 @@ public class Status extends Command {
     @Override
     public String execute(GameState gameState){
         if(this.topic.equals("inventory")){
-            if(!(gameState.getPlayer().getInventory().isEmpty())){
-                for(Item i : gameState.getPlayer().getInventory()){
-                    return items + i.getName() + "\n";
-                }
-            }
             if(!(gameState.getPlayer().getEquipment().isEmpty())){
                 for(Equipment e : gameState.getPlayer().getEquipment()){
-                    return equipment + e.getName() + "\n";
+                    equipment = equipment + e.getName() + "\n";
                 }
             }
-
-            return items + equipment;
+            if(!(gameState.getPlayer().getInventory().isEmpty())){
+                for(Item i : gameState.getPlayer().getInventory()){
+                    items = items + i.getName() + "\n";
+                }
+            }
+            
+            return "You have the following equipment:\n" + equipment + "You have the following items\n" + items;
 
         }else if(this.topic.equals("player")){
             return gameState.getPlayer().toString();

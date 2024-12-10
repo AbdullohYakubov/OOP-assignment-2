@@ -16,8 +16,8 @@ public class Player {
     private ArrayList<Equipment> equipment;
     private Item itemToRetrieve;
     private Equipment equipmentToRetrieve;
-    private boolean hasItem = false;
-    private boolean hasEquipment = false;
+    // private boolean hasItem;
+    // private boolean hasEquipment;
     // private Equipment e;
 
     public Player(){}
@@ -56,16 +56,14 @@ public class Player {
         // Checks if the player has an item with the specified name in their inventory.
         if(!inventory.isEmpty()){
             for(Item item : inventory){
-                if(item.getName().equals(itemName)){
-                    hasItem = true;
+                if(item.getName().equalsIgnoreCase(itemName)){
+                    return true;
                 }
             }
+            return false;
         }
-        // else{
-        //     System.out.println("Your inventory is empty!");
-        // }
 
-        return hasItem;
+        return false;
     }
 
     public void addItem(Item item){
@@ -103,15 +101,14 @@ public class Player {
         if(!equipment.isEmpty()){
             for(Equipment e : equipment){
                 if(e.getName().equals(equipmentName)){
-                    hasEquipment = true;
+                    return true;
                 }
             }
-        }
-        // else{
-        //     System.out.println("Your equipment list is empty!");
-        // }
 
-        return hasEquipment;
+            return false;
+        }
+
+        return false;
     }
 
     public void addEquipment(Equipment equipment){

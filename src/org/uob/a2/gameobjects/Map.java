@@ -26,7 +26,7 @@ public class Map {
 
     public Map(){
         rooms = new ArrayList<Room>();
-        currentRoom = new Room("0", "Foyer", "This is the entrance", false);
+        // currentRoom = new Room("0", "Foyer", "This is the entrance", false);
     }
 
     public Room getCurrentRoom(){
@@ -38,9 +38,10 @@ public class Map {
         for(Room room : rooms){
             if(room.getId().equals(roomId)){
                 this.currentRoom = room;
+                break;
+            }else{
+                this.currentRoom = null;
             }
-            
-            this.currentRoom = null;
         }
     }
 

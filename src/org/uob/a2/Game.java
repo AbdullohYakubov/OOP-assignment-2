@@ -32,7 +32,50 @@ public class Game {
 
         // Item mainKey = new Item("2", "main key", "a key that unlock the main door", true);
 
-        // Item code = new Item("3", "code", "code written on a peice of paper that is stuck on somewhere", true);
+        Room room = new Room("1", "Test Room", "A simple test room.", false);
+        Item hiddenItem = new Item("hiddenKey", "Hidden Key", "A key that is hidden.", true);
+        room.addItem(hiddenItem);
+        Map map = new Map();
+        map.addRoom(room);
+        map.setCurrentRoom("1");
+        GameState gameState = new GameState(map, new Player("Player"));
+        System.out.println(hiddenItem.getId());
+        System.out.println(hiddenItem.getName());
+        System.out.println(hiddenItem.getDescription());
+        System.out.println(hiddenItem.getHidden());
+
+        // System.out.println(gameState.getMap().getCurrentRoom().getItems());
+        // for(Item item : gameState.getMap().getCurrentRoom().getItems()){
+        //     if(item.getHidden()){
+        //         System.out.println("This item is hidden!");
+        //         break;
+        //     }
+        //     System.out.println("This item is not hidden!");
+        // }
+
+        Look lookCommand = new Look("hiddenKey");
+        String result = lookCommand.execute(gameState);
+
+        boolean testPassed = result.isEmpty();
+        System.out.println("AUTOMARK::Look.testLookHiddenObject: " + (testPassed ? "PASS" : "FAIL"));
+
+        // Room room = new Room("1", "Test Room", "A simple test room.", false);
+        // Item hiddenItem = new Item("hiddenKey", "Hidden Key", "A key that is hidden.", true);
+        // room.addItem(hiddenItem);
+        // Map map = new Map();
+        // map.addRoom(room);
+        // map.setCurrentRoom("1");
+        // GameState gameState = new GameState(map, new Player("Player"));
+
+        // // Execute look command
+        // Look lookCommand = new Look("hiddenKey");
+        // String result = lookCommand.execute(gameState);
+
+        // // Validate results
+        // boolean testPassed = result.isEmpty();
+
+        // System.out.println("AUTOMARK::Look.testLookHiddenObject: " + (testPassed ? "PASS" : "FAIL"));
+
         
         // // System.out.println(mainDoor);
         // // System.out.println(fridge);

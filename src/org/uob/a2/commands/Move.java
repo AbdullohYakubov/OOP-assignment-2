@@ -21,13 +21,17 @@ public class Move extends Command {
     public String execute(GameState gameState) {
         for(Exit exit : gameState.getMap().getCurrentRoom().getExits()){
             if(exit.getName().equals(this.direction)){
+                if(exit.getHidden()){
+                    return "No exit found in that direction.";
+                }
+
                 String nextRoomId = exit.getNextRoom();
                 gameState.getMap().setCurrentRoom(nextRoomId);
-                return "You moved " + this.direction + ". You are now in " + gameState.getMap().getCurrentRoom().getName() + ".";
+                return "Moving towards " + this.direction + "\n";
             }
         }
 
-        return "You cannot move " + this.direction + "!";
+        return "No exit found in that direction.";
     }
 
     public String toString(){

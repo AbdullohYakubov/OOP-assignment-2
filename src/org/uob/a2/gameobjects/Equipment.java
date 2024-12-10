@@ -26,17 +26,23 @@ public class Equipment extends GameObject implements Usable {
     }
 
     public String use(GameObject target, GameState gameState){
-        if(useInformation.isUsed()){
-            return "The item has already been used";
+        // if(useInformation.isUsed()){
+        //     return "The item has already been used";
+        // }
+
+        // if(target instanceof Feature){
+        //     if(gameState.getMap().getCurrentRoom().hasFeature(target.getName())){
+        //         for(Item item : gameState.getMap().getCurrentRoom().getItems()){
+        //             item.setHidden(false);
+        //         }
+        //     }
+        // }
+
+        for(Item item : gameState.getMap().getCurrentRoom().getItems()){
+            item.setHidden(false);
         }
 
-        if(target instanceof Feature){
-            if(gameState.getMap().getCurrentRoom().hasFeature(target.getName())){
-                for(Item item : gameState.getMap().getCurrentRoom().getItems()){
-                    item.setHidden(false);
-                }
-            }
-        }
+        this.getUseInformation().setUsed(true);
         return this.useInformation.getMessage();
     }
 

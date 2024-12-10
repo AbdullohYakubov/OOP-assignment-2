@@ -24,7 +24,7 @@ public class Drop extends Command {
                 if(e.getName().equals(item)){
                     gameState.getPlayer().getEquipment().remove(e);
                     gameState.getMap().getCurrentRoom().addEquipment(e);
-                    return e.getName() + "has been dropped";
+                    return "You drop: " + this.item;
                 }
             }
         }
@@ -33,7 +33,7 @@ public class Drop extends Command {
                 if(i.getName().equals(item)){
                     gameState.getPlayer().getInventory().remove(i);
                     gameState.getMap().getCurrentRoom().addItem(i);
-                    return i.getName() + "has been dropped";
+                    return "You drop: " + this.item;
                 }
             }
         }

@@ -27,13 +27,17 @@ public class Use extends Command {
                     if(e.getUseInformation().isUsed()) {
                         return "You have already used " + equipmentName;
                     }
-        
-                    if(e.getUseInformation().getTarget().equals(this.target)) {
-                        e.getUseInformation().setUsed(true);
-                        return e.getUseInformation().getMessage();
-                    }else {
-                        return "Invalid use target";
-                    }
+
+                    for(Feature feature : gameState.getMap().getCurrentRoom().getFeatures()){
+                        if(feature.getName().equals(this.target)){
+                            if(e.getUseInformation().getTarget().equals(feature.getId())){
+                                e.use(feature, gameState);
+                                return e.getUseInformation().getMessage();
+                            }
+                        }
+                    }   
+
+                    return "Invalid use target";
                 }
             }
         }

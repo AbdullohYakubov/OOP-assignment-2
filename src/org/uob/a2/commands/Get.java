@@ -31,6 +31,10 @@ public class Get extends Command {
         if(gameState.getMap().getCurrentRoom().hasEquipment(item)){
             for(Equipment e : gameState.getMap().getCurrentRoom().getEquipments()){
                 if(e.getName().equals(item)){
+                    if(e.getHidden()){
+                        return "No " + this.item + " to get.";
+                    }
+
                     gameState.getPlayer().addEquipment(e);
                     gameState.getMap().getCurrentRoom().getEquipments().remove(e);
                     return "You pick up: " + this.item;
@@ -40,6 +44,10 @@ public class Get extends Command {
         else if(gameState.getMap().getCurrentRoom().hasItem(item)){
             for(Item i : gameState.getMap().getCurrentRoom().getItems()){
                 if(i.getName().equals(item)){
+                    if(i.getHidden()){
+                        return "No " + this.item + " to get.";
+                    }
+
                     gameState.getPlayer().addItem(i);
                     gameState.getMap().getCurrentRoom().getItems().remove(i);
                     return "You pick up: " + this.item;

@@ -102,6 +102,10 @@ public class Look extends Command {
             }
         }
 
+        else if(gameState.getPlayer().hasEquipment(this.target)){
+            return "Use 'status <equipment>' command to look at the equipment";
+        }
+
         else if(!gameState.getMap().getCurrentRoom().getItems().isEmpty()){
             for(Item i : gameState.getMap().getCurrentRoom().getItems()){
                 if(i.getName().equalsIgnoreCase(this.target)){
@@ -112,6 +116,10 @@ public class Look extends Command {
                     return i.getDescription();
                 }
             }
+        }
+
+        else if(gameState.getPlayer().hasItem(this.target)){
+            return "Use 'status <item>' command to look at the item";
         }
 
         return "";

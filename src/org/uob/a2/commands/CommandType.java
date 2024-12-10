@@ -17,6 +17,10 @@ public enum CommandType {
      * Represents a command to use an item or interact with a game object.
      */
     USE,
+    /**
+     * Represents a command to combine an item with another item.
+     */
+    COMBINE,
 
     /**
      * Represents a command to pick up an item.

@@ -14,7 +14,7 @@ public class Player {
     private String name;
     private ArrayList<Item> inventory;
     private ArrayList<Equipment> equipment;
-    private Item itemToRetrieve;
+    // private Item itemToRetrieve;
     private Equipment equipmentToRetrieve;
     // private boolean hasItem;
     // private boolean hasEquipment;
@@ -41,7 +41,7 @@ public class Player {
         if(!inventory.isEmpty()){
             for(Item item : inventory){
                 if(item.getName().equals(itemName)){
-                    itemToRetrieve = item;
+                    return item;
                 }
             }
         }
@@ -49,7 +49,7 @@ public class Player {
             // System.out.println("Your inventory is empty!");
         // }
 
-        return itemToRetrieve;
+        return null;
     }
 
     public boolean hasItem(String itemName){

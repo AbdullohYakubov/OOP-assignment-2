@@ -175,6 +175,19 @@ public class Parser {
                 Use useCommand = new Use(item, target);
                 useCommand.commandType = CommandType.USE;
                 return useCommand;
+            
+            case COMBINE:
+                if(tokens.size() == 5){
+                    if(tokens.size() < 5 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.PREPOSITION || tokens.get(3).getTokenType() != TokenType.VAR || tokens.get(4).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                    }
+    
+                    String item_1 = tokens.get(1).getValue();
+                    String item_2 = tokens.get(3).getValue();
+                    Combine combineCommand = new Combine(item_1, item_2);
+                    combineCommand.commandType = CommandType.COMBINE;
+                    return combineCommand;
+                }
         
             default:
                 throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");

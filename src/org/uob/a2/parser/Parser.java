@@ -37,13 +37,30 @@ public class Parser {
 
         switch (commandToken.getTokenType()){
             case DROP:
-                if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
+                if(tokens.size() < 3){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
                 }
-                String itemToDrop = tokens.get(1).getValue();
-                Drop dropCommand = new Drop(itemToDrop);
-                dropCommand.commandType = CommandType.DROP;
-                return dropCommand;
+
+                if(tokens.size() == 3){
+                    if(tokens.size() < 3 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                    }
+                    String itemToDrop = tokens.get(1).getValue();
+                    Drop dropCommand = new Drop(itemToDrop);
+                    dropCommand.commandType = CommandType.DROP;
+                    return dropCommand;
+                }
+
+                if(tokens.size() == 4){
+                    if(tokens.size() < 4 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                    }
+                    String itemToDrop = tokens.get(1).getValue();
+                    String itemToDrop_2 = tokens.get(2).getValue();
+                    Drop dropCommand = new Drop(itemToDrop + " " + itemToDrop_2);
+                    dropCommand.commandType = CommandType.DROP;
+                    return dropCommand;
+                }
 
             case GET:
                 if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
@@ -56,13 +73,30 @@ public class Parser {
                 
             
             case LOOK:
-                if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
+                if(tokens.size() < 3){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
                 }
-                String param = tokens.get(1).getValue();
-                Look lookCommand = new Look(param);
-                lookCommand.commandType = CommandType.LOOK;
-                return lookCommand;
+
+                if(tokens.size() == 3){
+                    if(tokens.size() < 3 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                    }
+                    String param = tokens.get(1).getValue();
+                    Look lookCommmand = new Look(param);
+                    lookCommmand.commandType = CommandType.LOOK;
+                    return lookCommmand;
+                }
+
+                if(tokens.size() == 4){
+                    if(tokens.size() < 4 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                    }
+                    String param = tokens.get(1).getValue();
+                    String param_2 = tokens.get(2).getValue();
+                    Look lookCommmand = new Look(param + " " + param_2);
+                    lookCommmand.commandType = CommandType.LOOK;
+                    return lookCommmand;
+                }
 
             case MOVE:
                 if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
@@ -74,13 +108,30 @@ public class Parser {
                 return moveCommand;
             
             case STATUS:
-                if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
+                if(tokens.size() < 3){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
                 }
-                String arg = tokens.get(1).getValue();
-                Status statusCommand = new Status(arg);
-                statusCommand.commandType = CommandType.STATUS;
-                return statusCommand;
+
+                if(tokens.size() == 3){
+                    if(tokens.size() < 3 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                    }
+                    String arg = tokens.get(1).getValue();
+                    Status statusCommand = new Status(arg);
+                    statusCommand.commandType = CommandType.STATUS;
+                    return statusCommand;
+                }
+
+                if(tokens.size() == 4){
+                    if(tokens.size() < 4 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                    }
+                    String arg = tokens.get(1).getValue();
+                    String arg_2 = tokens.get(2).getValue();
+                    Status statusCommand = new Status(arg + " " + arg_2);
+                    statusCommand.commandType = CommandType.STATUS;
+                    return statusCommand;
+                }
             
             case HELP:
                 if(tokens.size() == 2){
@@ -105,6 +156,10 @@ public class Parser {
                 }
             
             case QUIT:
+                if(tokens.size() != 2){
+                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " cannot take any argument!");
+                }
+
                 if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.EOL){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " cannot take any argument!");
                 }

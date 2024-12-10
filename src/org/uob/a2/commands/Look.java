@@ -23,15 +23,33 @@ public class Look extends Command {
         if(target.equals("room")){
             String items = "";
             for(Item i : gameState.getMap().getCurrentRoom().getItems()){
-                items = items + i.getDescription() + "\n";
+                if(!i.getHidden()){
+                    items = items + i.getDescription() + "\n";
+                }
             }
 
             String equipment = "";
             for(Equipment e : gameState.getMap().getCurrentRoom().getEquipments()){
-                equipment = equipment + e.getDescription() + "\n";
+                if(!e.getHidden()){
+                    equipment = equipment + e.getDescription() + "\n";
+                }
             }
 
-            return gameState.getMap().getCurrentRoom().getDescription() + "\n" + items + equipment;
+            String features = "";
+            for(Feature feature : gameState.getMap().getCurrentRoom().getFeatures()){
+                if(!feature.getHidden()){
+                    features = features + feature.getDescription() + "\n";
+                }
+            }
+
+            String exits = "";
+            for(Exit exit : gameState.getMap().getCurrentRoom().getExits()){
+                if(!exit.getHidden()){
+                    exits = exits + exit.getDescription() + "\n";
+                }
+            }
+
+            return gameState.getMap().getCurrentRoom().getDescription() + "\nYou see:\n" + items + equipment + features + exits;
         }
         
         else if(target.equals("exits")){
@@ -60,9 +78,21 @@ public class Look extends Command {
             return "You also see:\n" + features;
         }
 
+        else if(!gameState.getMap().getCurrentRoom().getFeatures().isEmpty()){
+            for(Feature feature : gameState.getMap().getCurrentRoom().getFeatures()){
+                if(feature.getName().equalsIgnoreCase(this.target)){
+                    if(feature.getHidden()){
+                        return "";
+                    }
+
+                    return feature.getDescription();
+                }
+            }
+        }
+
         else if(!gameState.getMap().getCurrentRoom().getEquipments().isEmpty()){
             for(Equipment e : gameState.getMap().getCurrentRoom().getEquipments()){
-                if(e.getId().equalsIgnoreCase(this.target)){
+                if(e.getName().equalsIgnoreCase(this.target)){
                     if(e.getHidden()){
                         return "";
                     }
@@ -74,7 +104,7 @@ public class Look extends Command {
 
         else if(!gameState.getMap().getCurrentRoom().getItems().isEmpty()){
             for(Item i : gameState.getMap().getCurrentRoom().getItems()){
-                if(i.getId().equalsIgnoreCase(this.target)){
+                if(i.getName().equalsIgnoreCase(this.target)){
                     if(i.getHidden()){
                         return "";
                     }

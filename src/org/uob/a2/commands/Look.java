@@ -33,6 +33,7 @@ public class Look extends Command {
 
             return gameState.getMap().getCurrentRoom().getDescription() + "\n" + items + equipment;
         }
+        
         else if(target.equals("exits")){
             String exits = "";
             for(Exit exit : gameState.getMap().getCurrentRoom().getExits()){
@@ -45,6 +46,7 @@ public class Look extends Command {
 
             return "The available exits are:\n" + exits;
         }
+
         else if(target.equals("features")){
             String features = "";
             for(Feature feature : gameState.getMap().getCurrentRoom().getFeatures()){
@@ -57,59 +59,18 @@ public class Look extends Command {
 
             return "You also see:\n" + features;
         }
-        
-        else if(gameState.getMap().getCurrentRoom().hasEquipment(target)){
-            // for(Equipment e : gameState.getMap().getCurrentRoom().getEquipments()){
-            //     if(e.getName().equals(target)){
-            //         if(!e.getHidden()){
-            //             return e.getDescription();
-            //         }else{
-            //             return "";
-            //         }
-            //     }
-            // }
 
-            Equipment equipment = gameState.getMap().getCurrentRoom().getEquipment(target);
-            
-            if(equipment.getHidden()){
-                return "";
+        else if(!gameState.getMap().getCurrentRoom().getEquipments().isEmpty()){
+            for(Equipment e : gameState.getMap().getCurrentRoom().getEquipments()){
+                if(e.getId().equalsIgnoreCase(this.target)){
+                    if(e.getHidden()){
+                        return "";
+                    }
+
+                    return e.getDescription();
+                }
             }
-
-            return equipment.getDescription();
         }
-    //     else if(gameState.getMap().getCurrentRoom().hasItem(target)){
-    //         System.out.println(gameState.getMap().getCurrentRoom().hasItem(target));
-    //         for(Item i : gameState.getMap().getCurrentRoom().getItems()){
-    //             System.out.println(i.getId());
-    //             System.out.println(i.getName());
-    //             System.out.println(i.getDescription());
-    //             System.out.println(i.getHidden());
-    //             if(!i.getHidden()){
-    //                 if(i.getId().equalsIgnoreCase(target)){
-    //                     return i.getDescription();
-    //                 }
-    //             }
-
-    //             else{
-    //                 return "";
-    //             }
-                
-    //         }
-    //         // Item item = gameState.getMap().getCurrentRoom().getItem(target);
-
-    //         // if(item.getHidden()){
-    //         //     return "";
-    //         // }
-
-    //         // return item.getDescription();
-    //         // System.out.println(item.getId());
-    //         // System.out.println(item.getName());
-    //         // System.out.println(item.getDescription());
-    //         // System.out.println(item.getHidden());
-    //     }
-
-    //     return "hello";
-    // }
 
         else if(!gameState.getMap().getCurrentRoom().getItems().isEmpty()){
             for(Item i : gameState.getMap().getCurrentRoom().getItems()){

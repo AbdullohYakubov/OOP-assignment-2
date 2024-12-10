@@ -46,7 +46,10 @@ public class GameStateFileParser {
                     player = new Player(args[0]);
                     gameState.setPlayer(player);
                 }else if(line.startsWith("map")){
+                    int colonAt = line.indexOf(":");
+                    String subLine = line.substring(colonAt + 1);
                     map = new Map();
+                    map.setCurrentRoom(subLine);
                     gameState.setMap(map);
                 }else if(line.startsWith("room")){
                     int colonAt = line.indexOf(":");
@@ -54,6 +57,9 @@ public class GameStateFileParser {
                     String[] args = subLine.split("[,]", 0);
                     room = new Room(args[0], args[1], args[2], Boolean.parseBoolean(args[3]));
                     map.addRoom(room);
+                    if(map.getCurrentRoom() == null){
+                        map.setCurrentRoom(room.getId());
+                    }
                 }else if(line.startsWith("exit")){
                     int colonAt = line.indexOf(":");
                     String subLine = line.substring(colonAt + 1);

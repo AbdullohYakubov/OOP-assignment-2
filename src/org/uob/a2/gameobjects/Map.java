@@ -16,7 +16,7 @@ import org.uob.a2.utils.*;
  */
 public class Map {
     private Room currentRoom;
-    private ArrayList<Room> rooms;
+    public ArrayList<Room> rooms;
     
     /**
      * Returns a string representation of the map, including all rooms.

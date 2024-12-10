@@ -22,85 +22,104 @@ public class Parser {
         }
 
         // Checks if the order of command arguments is correct so that something like 'use key on' is not allowed
-        if(tokens.get(tokens.size() - 1).getTokenType() != TokenType.EOL){
-            throw new CommandErrorException("Invalid Command! Please enter a valid command! Type\'help\' to see a list of available commands.");
-        }
+        // if(tokens.get(tokens.size() - 1).getTokenType() != TokenType.EOL){
+        //     throw new CommandErrorException("Invalid Command! Please enter a valid command! Type\'help\' to see a list of available commands.");
+        // }
 
         Token commandToken = tokens.get(0);
 
-        boolean isFirstWordCommand = commandToken.getTokenType() == TokenType.DROP || commandToken.getTokenType() == TokenType.GET || commandToken.getTokenType() == TokenType.HELP || commandToken.getTokenType() == TokenType.LOOK || commandToken.getTokenType() == TokenType.MOVE || commandToken.getTokenType() == TokenType.QUIT || commandToken.getTokenType() == TokenType.STATUS || commandToken.getTokenType() == TokenType.USE;
+        // boolean isFirstWordCommand = commandToken.getTokenType() == TokenType.DROP || commandToken.getTokenType() == TokenType.GET || commandToken.getTokenType() == TokenType.HELP || commandToken.getTokenType() == TokenType.LOOK || commandToken.getTokenType() == TokenType.MOVE || commandToken.getTokenType() == TokenType.QUIT || commandToken.getTokenType() == TokenType.STATUS || commandToken.getTokenType() == TokenType.USE;
 
         // checks if the first element is actually the command, so that something like 'chest use on key' is not allowed
-        if(!isFirstWordCommand){
-            throw new CommandErrorException("Invalid Command! Please enter a valid command! Type\'help\' to see a list of available commands.");
-        }
+        // if(!isFirstWordCommand){
+        //     throw new CommandErrorException("Invalid Command! Please enter a valid command! Type\'help\' to see a list of available commands.");
+        // }
 
-        switch (commandToken.getTokenType()) {
+        switch (commandToken.getTokenType()){
             case DROP:
-                if(tokens.size() != 3){
+                if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
                 }
                 String itemToDrop = tokens.get(1).getValue();
-                return new Drop(itemToDrop);
+                Drop dropCommand = new Drop(itemToDrop);
+                dropCommand.commandType = CommandType.DROP;
+                return dropCommand;
 
             case GET:
-                if(tokens.size() != 3){
+                if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
                 }
                 String itemToPickUp = tokens.get(1).getValue();
-                return new Get(itemToPickUp);
+                Get getCommand = new Get(itemToPickUp);
+                getCommand.commandType = CommandType.GET;
+                return getCommand;
+                
             
             case LOOK:
-                if(tokens.size() != 3){
+                if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
                 }
                 String param = tokens.get(1).getValue();
-                return new Look(param);
+                Look lookCommand = new Look(param);
+                lookCommand.commandType = CommandType.LOOK;
+                return lookCommand;
 
             case MOVE:
-                if(tokens.size() != 3){
+                if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
                 }
                 String direction = tokens.get(1).getValue();
-                return new Move(direction);
+                Move moveCommand = new Move(direction);
+                moveCommand.commandType = CommandType.MOVE;
+                return moveCommand;
             
             case STATUS:
-                if(tokens.size() != 3){
+                if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
                 }
                 String arg = tokens.get(1).getValue();
-                return new Move(arg);
+                Status statusCommand = new Status(arg);
+                statusCommand.commandType = CommandType.STATUS;
+                return statusCommand;
             
             case HELP:
                 if(tokens.size() == 2){
-                    return new Help(null);
-                }else if(tokens.size() == 3){
+                    if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " can have 1 or no argument");
+                    }
+
+                    Help helpCommand = new Help(null);
+                    helpCommand.commandType = CommandType.HELP;
+                    return helpCommand;
+
+                }
+                if(tokens.size() == 3){
+                    if(tokens.size() < 3 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " can have 1 or no argument");
+                    }
+
                     String topic = tokens.get(1).getValue();
-                    return new Help(topic);
-                }else{
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " can have 1 or no argument");
+                    Help helpCommand = new Help(topic);
+                    helpCommand.commandType = CommandType.HELP;
+                    return helpCommand;
                 }
             
             case QUIT:
-                if(tokens.size() != 2){
+                if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.EOL){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " cannot take any argument!");
                 }
                 return new Quit();
             
             case USE:
-            // case COMBINE:
-                if(tokens.size() != 5){
+                if(tokens.size() < 4 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.PREPOSITION || tokens.get(3).getTokenType() != TokenType.VAR){
                     throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
-                }
-
-                // Checks if the second and the fourth words in the user input are actually treated as variables so that something like use on key chest is not allowed 
-                if(tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.VAR){
-                    throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");
                 }
 
                 String item = tokens.get(1).getValue();
                 String target = tokens.get(3).getValue();
-                return new Use(item, target);
+                Use useCommand = new Use(item, target);
+                useCommand.commandType = CommandType.USE;
+                return useCommand;
         
             default:
                 throw new CommandErrorException("Invalid Input! Please enter a valid command! Type\'help\' to see a list of available commands.");

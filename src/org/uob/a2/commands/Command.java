@@ -18,5 +18,4 @@ public abstract class Command {
     public Command(){}
 
     public abstract String execute(GameState gameState);
-    // a string describing the outcome of the command execution
 }

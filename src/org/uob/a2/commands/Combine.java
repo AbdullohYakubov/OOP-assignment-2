@@ -25,7 +25,7 @@ public class Combine extends Command{
             Item item_1 = gameState.getPlayer().getItem(this.item_1);
             Item item_2 = gameState.getPlayer().getItem(this.item_2);
 
-            if((this.item_1.equals("wooden_stick") && this.item_2.equals("rope") || this.item_2.equals("wooden_stick") || this.item_1.equals("rope"))){
+            if(((this.item_1.equals("planks") && this.item_2.equals("rope")) || (this.item_2.equals("planks") && this.item_1.equals("rope")))){
                 gameState.getPlayer().getInventory().remove(item_1);
                 gameState.getPlayer().getInventory().remove(item_2);
                 UseInformation hookedStickUseInfo = new UseInformation(false, "get", "c1", "eq3", "You use the hooked stick to topple the jar from the shelf. Something inside it falls to the floor...");
@@ -39,5 +39,4 @@ public class Combine extends Command{
 
         return "";
     }
-    
 }

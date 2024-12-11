@@ -65,6 +65,16 @@ public enum TokenType {
     COMBINE,
 
     /**
+     * Represents the "combine" command.
+     */
+    OPEN,
+
+    /**
+     * Represents the "chop" command.
+     */
+    CHOP,
+
+    /**
      * Represents a preposition such as "on", "with", or "using".
      */
     PREPOSITION,

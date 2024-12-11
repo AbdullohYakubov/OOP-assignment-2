@@ -21,7 +21,7 @@ public class Drop extends Command {
     public String execute(GameState gameState) {
         if(gameState.getPlayer().hasEquipment(item)){
             for(Equipment e : gameState.getPlayer().getEquipment()){
-                if(e.getName().equals(item)){
+                if(e.getName().equalsIgnoreCase(item)){
                     gameState.getPlayer().getEquipment().remove(e);
                     gameState.getMap().getCurrentRoom().addEquipment(e);
                     return "You drop: " + this.item;
@@ -30,7 +30,7 @@ public class Drop extends Command {
         }
         else if(gameState.getPlayer().hasItem(item)){
             for(Item i : gameState.getPlayer().getInventory()){
-                if(i.getName().equals(item)){
+                if(i.getName().equalsIgnoreCase(item)){
                     gameState.getPlayer().getInventory().remove(i);
                     gameState.getMap().getCurrentRoom().addItem(i);
                     return "You drop: " + this.item;

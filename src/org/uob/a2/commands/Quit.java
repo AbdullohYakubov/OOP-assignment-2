@@ -17,5 +17,4 @@ public class Quit extends Command {
     public String execute(GameState gameState){
         return "Game over: Your current status is:\n" + gameState.getPlayer();
     }
- 
 }

@@ -13,8 +13,6 @@ import org.uob.a2.gameobjects.*;
  */
 public class Status extends Command {
     private String topic;
-    private String items = "";
-    private String equipment = "";
 
     public Status(String topic){
         this.topic = topic;
@@ -22,12 +20,14 @@ public class Status extends Command {
 
     @Override
     public String execute(GameState gameState){
-        if(this.topic.equals("inventory")){
+        if(this.topic.equalsIgnoreCase("inventory")){
+            String equipment = "";
             if(!(gameState.getPlayer().getEquipment().isEmpty())){
                 for(Equipment e : gameState.getPlayer().getEquipment()){
                     equipment = equipment + e.getName() + "\n";
                 }
             }
+            String items = "";
             if(!(gameState.getPlayer().getInventory().isEmpty())){
                 for(Item i : gameState.getPlayer().getInventory()){
                     items = items + i.getName() + "\n";
@@ -36,18 +36,18 @@ public class Status extends Command {
             
             return "You have the following equipment:\n" + equipment + "You have the following items\n" + items;
 
-        }else if(this.topic.equals("player")){
+        }else if(this.topic.equalsIgnoreCase("player")){
             return gameState.getPlayer().toString();
 
         }else if(!(gameState.getPlayer().getEquipment().isEmpty())){
             for(Equipment equipment : gameState.getPlayer().getEquipment()){
-                if(equipment.getName().equals(this.topic)){
+                if(equipment.getName().equalsIgnoreCase(this.topic)){
                     return equipment.getDescription();
                 }
             }
         }else if(!(gameState.getPlayer().getInventory().isEmpty())){
             for(Item item : gameState.getPlayer().getInventory()){
-                if(item.getName().equals(this.topic)){
+                if(item.getName().equalsIgnoreCase(this.topic)){
                     return item.getDescription();
                 }
             }

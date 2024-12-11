@@ -20,7 +20,7 @@ public class Move extends Command {
     @Override
     public String execute(GameState gameState) {
         for(Exit exit : gameState.getMap().getCurrentRoom().getExits()){
-            if(exit.getName().equals(this.direction)){
+            if(exit.getName().equalsIgnoreCase(this.direction)){
                 if(exit.getHidden()){
                     return "No exit found in that direction.";
                 }

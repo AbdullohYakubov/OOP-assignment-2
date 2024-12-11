@@ -25,7 +25,7 @@ map:r1
         exit:e11,north,A door to the north,r2,false
         exit:e12,east,A door to the east,r6,false
         exit:e13,south,A door to the south,r9,false
-        item:i2,wooden_stick,Rough wooden stick lightweight yet useful for clever escapes,false
+        item:i2,planks,Rough wooden planks lightweight yet useful for clever escapes,false
     room:r6,Living Room,A shadowy living room with silence and unsettling creaking floorboards.,false
         exit:e14,west,A door to the west,r5,false
         exit:e15,north,A door to the north,r3,false

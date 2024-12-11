@@ -23,13 +23,13 @@ public class Use extends Command {
     public String execute(GameState gameState){
         if(gameState.getPlayer().hasEquipment(equipmentName)) {
             for(Equipment e : gameState.getPlayer().getEquipment()) {
-                if(e.getName().equals(equipmentName)) {
+                if(e.getName().equalsIgnoreCase(this.equipmentName)) {
                     if(e.getUseInformation().isUsed()) {
-                        return "You have already used " + equipmentName;
+                        return "You have already used " + this.equipmentName;
                     }
 
                     for(Feature feature : gameState.getMap().getCurrentRoom().getFeatures()){
-                        if(feature.getName().equals(this.target)){
+                        if(feature.getName().equalsIgnoreCase(this.target)){
                             if(e.getUseInformation().getTarget().equals(feature.getId())){
                                 e.use(feature, gameState);
                                 return e.getUseInformation().getMessage();

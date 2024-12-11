@@ -20,7 +20,7 @@ public class Look extends Command {
 
     @Override
     public String execute(GameState gameState) {
-        if(target.equals("room")){
+        if(target.equalsIgnoreCase("room")){
             String items = "";
             for(Item i : gameState.getMap().getCurrentRoom().getItems()){
                 if(!i.getHidden()){
@@ -52,7 +52,7 @@ public class Look extends Command {
             return gameState.getMap().getCurrentRoom().getDescription() + "\nYou see:\n" + items + equipment + features + exits;
         }
         
-        else if(target.equals("exits")){
+        else if(target.equalsIgnoreCase("exits")){
             String exits = "";
             for(Exit exit : gameState.getMap().getCurrentRoom().getExits()){
                 if(!exit.getHidden()){

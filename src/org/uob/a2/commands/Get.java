@@ -69,5 +69,4 @@ public class Get extends Command {
     public String toString(){
         return "get " + item; 
     }
-   
 }

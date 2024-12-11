@@ -22,7 +22,15 @@ public class Get extends Command {
     public String execute(GameState gameState) {
         if(!gameState.getPlayer().getInventory().isEmpty()){
             for(Item i : gameState.getPlayer().getInventory()){
-                if(i.getName().equals(this.item)){
+                if(i.getName().equalsIgnoreCase(this.item)){
+                    return "You already have " + this.item;
+                }
+            }
+        }
+
+        if(!gameState.getPlayer().getEquipment().isEmpty()){
+            for(Equipment e : gameState.getPlayer().getEquipment()){
+                if(e.getName().equalsIgnoreCase(this.item)){
                     return "You already have " + this.item;
                 }
             }
@@ -30,7 +38,7 @@ public class Get extends Command {
         
         if(gameState.getMap().getCurrentRoom().hasEquipment(item)){
             for(Equipment e : gameState.getMap().getCurrentRoom().getEquipments()){
-                if(e.getName().equals(item)){
+                if(e.getName().equalsIgnoreCase(item)){
                     if(e.getHidden()){
                         return "No " + this.item + " to get.";
                     }
@@ -43,7 +51,7 @@ public class Get extends Command {
         }
         else if(gameState.getMap().getCurrentRoom().hasItem(item)){
             for(Item i : gameState.getMap().getCurrentRoom().getItems()){
-                if(i.getName().equals(item)){
+                if(i.getName().equalsIgnoreCase(item)){
                     if(i.getHidden()){
                         return "No " + this.item + " to get.";
                     }

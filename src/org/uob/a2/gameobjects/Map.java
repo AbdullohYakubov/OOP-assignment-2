@@ -32,6 +32,10 @@ public class Map {
         return this.currentRoom;
     }
 
+    public ArrayList<Room> getRooms(){
+        return this.rooms;
+    }
+
     public void setCurrentRoom(String roomId){
         // Sets the current room based on the Id
         for(Room room : rooms){

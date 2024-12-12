@@ -38,10 +38,15 @@ public class Game {
         System.out.println("Loading game...\nGame loaded successfully.");
         Look lookCommand = new Look("room");
         System.out.println(lookCommand.execute(gameState));
-        // System.out.println(gameState.getMap().getCurrentRoom().getDescription());
         String userInput = "";
 
         while(!userInput.equals("quit")){
+            System.out.print(">> ");
+            if(gameState.getUsedKey() && gameState.getUsedPadlockKey()){
+                System.out.println("You win! You escape the house.\nYour current status is:\n" + gameState.getPlayer());
+                break;
+            }
+            
             try{
                 userInput = scr.nextLine();
             }catch(IllegalArgumentException iae){

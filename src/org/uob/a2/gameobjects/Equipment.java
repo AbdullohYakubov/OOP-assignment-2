@@ -35,6 +35,19 @@ public class Equipment extends GameObject implements Usable {
         }
 
         this.getUseInformation().setUsed(true);
+
+        if(this.getName().equalsIgnoreCase("key")){
+            if(this.getUseInformation().isUsed()){
+                gameState.setUsedKey(true);
+            }
+        }
+
+        if(this.getName().equalsIgnoreCase("padlock key")){
+            if(this.getUseInformation().isUsed()){
+                gameState.setUsedPadlockKey(true);
+            }
+        }
+        
         return this.useInformation.getMessage();
     }
 

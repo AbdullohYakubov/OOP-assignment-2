@@ -19,7 +19,7 @@ map:r1
         exit:e8,north,A door to the north,r1,false
         exit:e9,east,A door to the east,r5,false
         container:c1,jar,A cracked glass jar with reddish liquid sitting on a shelf that is 2 meters above the floor.,false
-        equipment:eq3,screwdriver,A screwdriver used to open screw locks.,true,open,f2,i2,You use the screwdriver to open the kennel and find the screwdriver!
+        equipment:eq3,screwdriver,A screwdriver used to open screw locks.,true,open,f2,i2,You use the screwdriver to open the kennel. There is something inside...
     room:r5,Dining Room,This is Granny's dining room where she enjoys the soup. There is nothing really special about this room.,false
         exit:e10,west,A door to the west,r4,false
         exit:e11,north,A door to the north,r2,false

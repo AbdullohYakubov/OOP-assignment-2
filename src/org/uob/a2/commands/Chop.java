@@ -12,14 +12,16 @@ import org.uob.a2.gameobjects.*;
  */
 public class Chop extends Command{
     private String item;
+    private String equipment;
 
-    public Chop(String item){
+    public Chop(String item, String equipment){
         this.item = item;
+        this.equipment = equipment;
     }
 
     @Override
     public String execute(GameState gameState) {
-        if(this.item.equals("watermelon")){
+        if(this.item.equals("watermelon") && this.equipment.equals("guillotine")){
             if(gameState.getMap().getCurrentRoom().getName().equals("Guillotine Area")){
                 if(gameState.getPlayer().hasItem("watermelon")){
                     Equipment equipment = gameState.getMap().getCurrentRoom().getEquipmentByName("key");
@@ -35,7 +37,6 @@ public class Chop extends Command{
             return "You are not in the right room to chop the " + this.item;
         }
 
-        return "Cannot chop " + this.item;
-    }
-    
+        return "Cannot chop " + this.item + " on " + this.equipment;
+    }   
 }

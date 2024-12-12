@@ -34,7 +34,7 @@ public class Status extends Command {
                 }
             }
             
-            return "You have the following equipment:\n" + equipment + "You have the following items\n" + items;
+            return "You have the following equipment:\n" + equipment + "You have the following items:\n" + items;
 
         }else if(this.topic.equalsIgnoreCase("player")){
             return gameState.getPlayer().toString();

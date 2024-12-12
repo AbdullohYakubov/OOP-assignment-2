@@ -12,6 +12,9 @@ public class GameState {
    
     private Map map;
     private Player player;
+    private boolean usedKey;
+    private boolean usedPadlockKey;
+
     /**
      * Returns a string representation of the game state, including the map and player details.
      *
@@ -33,12 +36,28 @@ public class GameState {
         this.player = player;
     }
 
+    public void setUsedKey(boolean usedKey){
+        this.usedKey = usedKey;
+    }
+
+    public void setUsedPadlockKey(boolean usedPadlockKey){
+        this.usedPadlockKey = usedPadlockKey;
+    }
+
     public Map getMap(){
         return this.map;
     }
 
     public Player getPlayer(){
         return this.player;
+    }
+
+    public boolean getUsedKey(){
+        return this.usedKey;
+    }
+
+    public boolean getUsedPadlockKey(){
+        return this.usedPadlockKey;
     }
 
     @Override

@@ -14,11 +14,6 @@ public class Player {
     private String name;
     private ArrayList<Item> inventory;
     private ArrayList<Equipment> equipment;
-    // private Item itemToRetrieve;
-    private Equipment equipmentToRetrieve;
-    // private boolean hasItem;
-    // private boolean hasEquipment;
-    // private Equipment e;
 
     public Player(){}
 
@@ -45,9 +40,6 @@ public class Player {
                 }
             }
         }
-        // else{
-            // System.out.println("Your inventory is empty!");
-        // }
 
         return null;
     }
@@ -88,12 +80,7 @@ public class Player {
             }
         }
 
-        // return null;
-        // else{
-        //     System.out.println("Your equipment list is empty!");
-        // }
-
-        return equipmentToRetrieve;
+        return null;
     }
 
     public boolean hasEquipment(String equipmentName){

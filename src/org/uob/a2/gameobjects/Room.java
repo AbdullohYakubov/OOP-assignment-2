@@ -20,10 +20,6 @@ public class Room extends GameObject {
     private ArrayList<Equipment> equipment;
     private Equipment equipmentToRetrieve;
     private ArrayList<GameObject> gameObjects;
-    // private boolean hasExit;
-    // private boolean hasFeature;
-    // private boolean hasItem;
-    // private boolean hasEquipment;
 
     public Room(){}
 
@@ -177,9 +173,6 @@ public class Room extends GameObject {
 
             return false;
         }
-        // else{
-        //     System.out.println("This room does not have any exits!");
-        // }
 
         return false; 
     }
@@ -195,9 +188,6 @@ public class Room extends GameObject {
 
             return false;
         }
-        // else{
-        //     System.out.println("This room does not have any features!");
-        // }
 
         return false; 
     }
@@ -213,9 +203,6 @@ public class Room extends GameObject {
 
             return false;
         }
-        // else{
-        //     System.out.println("This room does not have any items!");
-        // }
 
         return false; 
     }
@@ -231,9 +218,6 @@ public class Room extends GameObject {
 
             return false;
         }
-        // else{
-        //     System.out.println("This room does not have any equipment!");
-        // }
 
         return false;
     }

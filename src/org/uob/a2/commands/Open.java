@@ -30,5 +30,4 @@ public class Open extends Command{
 
         return "Cannot open " + this.target;
     }
-    
 }

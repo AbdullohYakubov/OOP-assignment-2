@@ -26,7 +26,6 @@ public class Map {
 
     public Map(){
         rooms = new ArrayList<Room>();
-        // currentRoom = new Room("0", "Foyer", "This is the entrance", false);
     }
 
     public Room getCurrentRoom(){

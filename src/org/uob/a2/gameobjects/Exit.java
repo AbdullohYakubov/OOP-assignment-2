@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class Exit extends GameObject {
 
     private String nextRoom;
-    // private ArrayList<String> exits;
    
     public Exit(String id, String name, String description, String nextRoom, boolean hidden){
         super(id, name, description, hidden);

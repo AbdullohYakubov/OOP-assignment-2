@@ -50,5 +50,4 @@ public class Container extends Feature {
                 ", hidden=" + getHidden() +
                 '}';
     }
- 
 }

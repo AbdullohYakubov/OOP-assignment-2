@@ -33,12 +33,12 @@ public class Parser {
         switch (commandToken.getTokenType()){
             case DROP:
                 if(tokens.size() < 3 || tokens.size() > 4){
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                    throw new CommandErrorException("Invalid command!");
                 }
 
                 if(tokens.size() == 3){
                     if(tokens.size() < 3 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.EOL){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                        throw new CommandErrorException("Invalid command!");
                     }
                     String itemToDrop = tokens.get(1).getValue();
                     Drop dropCommand = new Drop(itemToDrop);
@@ -48,7 +48,7 @@ public class Parser {
 
                 if(tokens.size() == 4){
                     if(tokens.size() < 4 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.EOL){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                        throw new CommandErrorException("Invalid command!");
                     }
                     String itemToDrop = tokens.get(1).getValue();
                     String itemToDrop_2 = tokens.get(2).getValue();
@@ -61,12 +61,12 @@ public class Parser {
 
             case GET:
                 if(tokens.size() < 2 || tokens.size() > 4){
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                    throw new CommandErrorException("Invalid command!");
                 }
 
                 if(tokens.size() == 2){
                     if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.VAR){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                        throw new CommandErrorException("Invalid command!");
                     }
                     String itemToPickUp = tokens.get(1).getValue();
                     Get getCommand = new Get(itemToPickUp);
@@ -76,7 +76,7 @@ public class Parser {
 
                 if(tokens.size() == 3){
                     if(tokens.size() < 3 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.EOL){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                        throw new CommandErrorException("Invalid command!");
                     }
                     String itemToPickUp = tokens.get(1).getValue();
                     Get getCommand = new Get(itemToPickUp);
@@ -86,7 +86,7 @@ public class Parser {
 
                 if(tokens.size() == 4){
                     if(tokens.size() < 4 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.EOL){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                        throw new CommandErrorException("Invalid command!");
                     }
                     String itemToPickUp = tokens.get(1).getValue();
                     String itemToPickUp_2 = tokens.get(2).getValue();
@@ -99,12 +99,12 @@ public class Parser {
                 
             case LOOK:
                 if(tokens.size() < 3 || tokens.size() > 4){
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                    throw new CommandErrorException("Invalid command!");
                 }
 
                 if(tokens.size() == 3){
                     if(tokens.size() < 3 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.EOL){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                        throw new CommandErrorException("Invalid command!");
                     }
                     String param = tokens.get(1).getValue();
                     Look lookCommmand = new Look(param);
@@ -114,7 +114,7 @@ public class Parser {
 
                 if(tokens.size() == 4){
                     if(tokens.size() < 4 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.EOL){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                        throw new CommandErrorException("Invalid command!");
                     }
                     String param = tokens.get(1).getValue();
                     String param_2 = tokens.get(2).getValue();
@@ -198,16 +198,17 @@ public class Parser {
                 return null;
             
             case CHOP:
-                if(tokens.size() != 3){
+                if(tokens.size() != 5){
                     throw new CommandErrorException("Invalid command!");
                 }
 
-                if(tokens.size() == 3){
-                    if(tokens.size() < 3 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.EOL){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 1 argument!");
+                if(tokens.size() == 5){
+                    if(tokens.size() < 5 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.PREPOSITION || tokens.get(3).getTokenType() != TokenType.VAR || tokens.get(4).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command!");
                     }
                     String item = tokens.get(1).getValue();
-                    Chop chopCommand = new Chop(item);
+                    String equipment = tokens.get(3).getValue();
+                    Chop chopCommand = new Chop(item, equipment);
                     chopCommand.commandType = CommandType.CHOP;
                     return chopCommand;
                 }
@@ -231,7 +232,7 @@ public class Parser {
                 }
                 if(tokens.size() == 3){
                     if(tokens.size() < 3 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.EOL){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " can have 1 or no argument");
+                        throw new CommandErrorException("Invalid command!");
                     }
 
                     String topic = tokens.get(1).getValue();
@@ -244,11 +245,11 @@ public class Parser {
             
             case QUIT:
                 if(tokens.size() != 2){
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " cannot take any argument!");
+                    throw new CommandErrorException("Invalid command!");
                 }
 
                 if(tokens.size() < 2 || tokens.get(1).getTokenType() != TokenType.EOL){
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " cannot take any argument!");
+                    throw new CommandErrorException("Invalid command!");
                 }
                 return new Quit();
             
@@ -259,7 +260,19 @@ public class Parser {
 
                 if(tokens.size() == 4){
                     if(tokens.size() < 4 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.PREPOSITION || tokens.get(3).getTokenType() != TokenType.VAR){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                        throw new CommandErrorException("Invalid command!");
+                    }
+    
+                    String equipment = tokens.get(1).getValue();
+                    String target = tokens.get(3).getValue();
+                    Use useCommand = new Use(equipment, target);
+                    useCommand.commandType = CommandType.USE;
+                    return useCommand;
+                }
+
+                if(tokens.size() == 5){
+                    if(tokens.size() < 5 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.PREPOSITION || tokens.get(3).getTokenType() != TokenType.VAR || tokens.get(4).getTokenType() != TokenType.EOL){
+                        throw new CommandErrorException("Invalid command!");
                     }
     
                     String equipment = tokens.get(1).getValue();
@@ -272,7 +285,7 @@ public class Parser {
                 if(tokens.size() == 6){
                     if(tokens.get(2).getTokenType() == TokenType.VAR){
                         if(tokens.size() < 6 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.PREPOSITION || tokens.get(4).getTokenType() != TokenType.VAR || tokens.get(5).getTokenType() != TokenType.EOL){
-                            throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                            throw new CommandErrorException("Invalid command!");
                         }
         
                         String equipment = tokens.get(1).getValue();
@@ -285,7 +298,7 @@ public class Parser {
 
                     if(tokens.get(2).getTokenType() == TokenType.PREPOSITION){
                         if(tokens.size() < 6 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.VAR || tokens.get(4).getTokenType() != TokenType.VAR || tokens.get(5).getTokenType() != TokenType.EOL){
-                            throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                            throw new CommandErrorException("Invalid command!");
                         }
         
                         String equipment = tokens.get(1).getValue();
@@ -300,41 +313,13 @@ public class Parser {
                 return null;
             
             case COMBINE:
-                // if(tokens.size() == 6){
-                //     if(tokens.get(2).getTokenType() == TokenType.PREPOSITION){
-                //         if(tokens.size() < 6 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.VAR || tokens.get(4).getTokenType() != TokenType.VAR || tokens.get(5).getTokenType() != TokenType.EOL){
-                //             throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
-                //         }
-
-                //         String item_1 = tokens.get(1).getValue();
-                //         String item_2 = tokens.get(3).getValue();
-                //         String item_2_2 = tokens.get(4).getValue();
-                //         Combine combineCommand = new Combine(item_1, item_2 + " " + item_2_2);
-                //         combineCommand.commandType = CommandType.COMBINE;
-                //         return combineCommand;
-                //     }
-
-                //     else if(tokens.get(2).getTokenType() == TokenType.VAR){
-                //         if(tokens.size() < 6 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(3).getTokenType() != TokenType.PREPOSITION || tokens.get(4).getTokenType() != TokenType.VAR || tokens.get(5).getTokenType() != TokenType.EOL){
-                //             throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
-                //         }
-
-                //         String item_1 = tokens.get(1).getValue();
-                //         String item_1_2 = tokens.get(2).getValue();
-                //         String item_2 = tokens.get(4).getValue();
-                //         Combine combineCommand = new Combine(item_1 + " " + item_1_2, item_2);
-                //         combineCommand.commandType = CommandType.COMBINE;
-                //         return combineCommand;
-                //     }
-                // }
-
                 if(tokens.size() != 5){
-                    throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                    throw new CommandErrorException("Invalid command!");
                 }
 
                 if(tokens.size() == 5){
                     if(tokens.size() < 5 || tokens.get(1).getTokenType() != TokenType.VAR || tokens.get(2).getTokenType() != TokenType.PREPOSITION || tokens.get(3).getTokenType() != TokenType.VAR || tokens.get(4).getTokenType() != TokenType.EOL){
-                        throw new CommandErrorException("Invalid command! " + commandToken.getTokenType() + " must take 2 arguments and 1 preposition!");
+                        throw new CommandErrorException("Invalid command!");
                     }
     
                     String item_1 = tokens.get(1).getValue();

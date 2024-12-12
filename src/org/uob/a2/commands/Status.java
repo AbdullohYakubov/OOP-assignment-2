@@ -35,17 +35,29 @@ public class Status extends Command {
             }
             
             return "You have the following equipment:\n" + equipment + "You have the following items:\n" + items;
-
-        }else if(this.topic.equalsIgnoreCase("player")){
+        }
+        
+        else if(this.topic.equalsIgnoreCase("player")){
             return gameState.getPlayer().toString();
+        }
 
-        }else if(!(gameState.getPlayer().getEquipment().isEmpty())){
+        else if(this.topic.equalsIgnoreCase("score")){
+            return "Player score: " + gameState.getPlayer().getScore();
+        }
+
+        else if(this.topic.equalsIgnoreCase("map")){
+            return "";
+        }
+
+        else if(!(gameState.getPlayer().getEquipment().isEmpty())){
             for(Equipment equipment : gameState.getPlayer().getEquipment()){
                 if(equipment.getName().equalsIgnoreCase(this.topic)){
                     return equipment.getDescription();
                 }
             }
-        }else if(!(gameState.getPlayer().getInventory().isEmpty())){
+        }
+        
+        else if(!(gameState.getPlayer().getInventory().isEmpty())){
             for(Item item : gameState.getPlayer().getInventory()){
                 if(item.getName().equalsIgnoreCase(this.topic)){
                     return item.getDescription();

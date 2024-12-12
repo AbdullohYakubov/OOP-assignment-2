@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class Player {
     private String name;
+    private int score = 10;
     private ArrayList<Item> inventory;
     private ArrayList<Equipment> equipment;
 
@@ -25,6 +26,18 @@ public class Player {
 
     public String getName(){
         return this.name;
+    }
+
+    public int getScore(){
+        return this.score;
+    }
+
+    public void setScore(int score){
+        this.score = score;
+    }
+
+    public void addScore(int score){
+        this.score += score;
     }
 
     public ArrayList<Item> getInventory(){
@@ -124,6 +137,7 @@ public class Player {
         for (Equipment e : this.equipment) {
             out.append("- ").append(e.getDescription()).append("\n");
         }
+        out.append("Player score: " + this.score);
         return out.toString();
     }
 }

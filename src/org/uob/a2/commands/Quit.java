@@ -15,6 +15,6 @@ public class Quit extends Command {
 
     @Override
     public String execute(GameState gameState){
-        return "Quitting game...\nGame over: Your current status is:\n" + gameState.getPlayer();
+        return "Quitting game...\nGame over: Your current status is:\n" + gameState.getPlayer() + "\n";
     }
 }

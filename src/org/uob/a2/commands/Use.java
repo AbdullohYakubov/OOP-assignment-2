@@ -24,7 +24,7 @@ public class Use extends Command {
         if(gameState.getPlayer().hasEquipment(equipmentName)) {
             for(Equipment e : gameState.getPlayer().getEquipment()) {
                 if(e.getName().equalsIgnoreCase(this.equipmentName)) {
-                    if(e.getUseInformation().isUsed()) {
+                    if(e.getUseInformation().isUsed()){
                         return "You have already used " + this.equipmentName;
                     }
 
@@ -32,6 +32,7 @@ public class Use extends Command {
                         if(feature.getName().equalsIgnoreCase(this.target)){
                             if(e.getUseInformation().getTarget().equals(feature.getId())){
                                 e.use(feature, gameState);
+                                gameState.getPlayer().addScore(10);
                                 return e.getUseInformation().getMessage();
                             }
                         }

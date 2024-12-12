@@ -2,14 +2,6 @@ package org.uob.a2.commands;
 
 import org.uob.a2.gameobjects.*;
 
-/**
- * Represents the use command, allowing the player to use equipment on a specific target in the game.
- * 
- * <p>
- * The use command checks if the player has the specified equipment and whether it can interact with
- * the target. The target can be a feature, item, or the current room, depending on the game context.
- * </p>
- */
 public class Chop extends Command{
     private String item;
     private String equipment;
@@ -28,6 +20,7 @@ public class Chop extends Command{
                     Item item = gameState.getPlayer().getItem("watermelon");
                     gameState.getPlayer().getInventory().remove(item);
                     equipment.setHidden(false);
+                    gameState.getPlayer().addScore(10);
                     return "You chop " + this.item + ". Something falls to the ground...";
                 }
 

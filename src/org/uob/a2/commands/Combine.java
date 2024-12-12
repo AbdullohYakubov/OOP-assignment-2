@@ -2,14 +2,6 @@ package org.uob.a2.commands;
 
 import org.uob.a2.gameobjects.*;
 
-/**
- * Represents the use command, allowing the player to use equipment on a specific target in the game.
- * 
- * <p>
- * The use command checks if the player has the specified equipment and whether it can interact with
- * the target. The target can be a feature, item, or the current room, depending on the game context.
- * </p>
- */
 public class Combine extends Command{
     private String item_1;
     private String item_2;
@@ -31,7 +23,8 @@ public class Combine extends Command{
                 UseInformation hookedStickUseInfo = new UseInformation(false, "get", "c1", "eq3", "You use the hooked stick to topple the jar from the shelf. Something inside it falls to the floor...");
                 Equipment hookedStick = new Equipment("eq5", "hooked stick", "Hooked stick perfect for toppling or retrieving hidden items.", false, hookedStickUseInfo);
                 gameState.getPlayer().addEquipment(hookedStick);
-                System.out.println(this.item_1 + " has been combined with " + this.item_2 + " to make " + hookedStick.getName());
+                gameState.getPlayer().addScore(10);
+                return this.item_1 + " has been combined with " + this.item_2 + " to make " + hookedStick.getName();
             }
         } else{
             return "Cannot combine " + this.item_1 + " with " + this.item_2;

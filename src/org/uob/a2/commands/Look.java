@@ -12,7 +12,6 @@ import org.uob.a2.gameobjects.*;
  */
 public class Look extends Command {
     private String target;
-    // private String itemToLookAt;
 
     public Look(String target){
         this.target = target;

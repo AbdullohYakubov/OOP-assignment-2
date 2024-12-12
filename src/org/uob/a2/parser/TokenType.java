@@ -65,7 +65,7 @@ public enum TokenType {
     COMBINE,
 
     /**
-     * Represents the "combine" command.
+     * Represents the "open" command.
      */
     OPEN,
 

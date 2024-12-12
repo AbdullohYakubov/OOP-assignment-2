@@ -48,59 +48,42 @@ public class Status extends Command {
         }
 
         else if(this.topic.equalsIgnoreCase("map")){
-            // Character[][] mapArr = new Character[3][5];
-            // ArrayList<Character> roomSymbols= new ArrayList<>();
+            Character[][] mapArr = new Character[3][5];
+            ArrayList<Character> roomSymbols= new ArrayList<>();
 
-            // for(Room room : gameState.getMap().getRooms()){
-            //     roomSymbols.add(room.getName().charAt(0));
-            // }
+            for(Room room : gameState.getMap().getRooms()){
+                roomSymbols.add(room.getName().charAt(0));
+            }
 
-            // mapArr[0][0] = roomSymbols.get(0);
-            // mapArr[0][1] = roomSymbols.get(1);
-            // mapArr[0][2] = roomSymbols.get(2);
-            // mapArr[0][3] = '*';
-            // mapArr[0][4] = '*';
-            // mapArr[1][0] = roomSymbols.get(3);
-            // mapArr[1][1] = roomSymbols.get(4);
-            // mapArr[1][2] = roomSymbols.get(5);
-            // mapArr[1][3] = roomSymbols.get(6);
-            // mapArr[1][4] = roomSymbols.get(7);
-            // mapArr[2][0] = '*';
-            // mapArr[2][1] = roomSymbols.get(8);
-            // mapArr[2][2] = roomSymbols.get(9);
-            // mapArr[2][3] = '*';
-            // mapArr[2][4] = '*';
-
-            // String map = "";
-
-            // for(int i = 0; i < mapArr.length; i++){
-            //     for(int j = 0; j < mapArr[i].length; j++){
-            //         map += mapArr[i][j] + " ";
-            //     }
-
-            //     map += "\n";
-            // }
-
-            // return map;
+            mapArr[0][0] = roomSymbols.get(0);
+            mapArr[0][1] = roomSymbols.get(1);
+            mapArr[0][2] = roomSymbols.get(2);
+            mapArr[0][3] = '*';
+            mapArr[0][4] = '*';
+            mapArr[1][0] = roomSymbols.get(3);
+            mapArr[1][1] = roomSymbols.get(4);
+            mapArr[1][2] = roomSymbols.get(5);
+            mapArr[1][3] = roomSymbols.get(6);
+            mapArr[1][4] = roomSymbols.get(7);
+            mapArr[2][0] = '*';
+            mapArr[2][1] = roomSymbols.get(8);
+            mapArr[2][2] = roomSymbols.get(9);
+            mapArr[2][3] = '*';
+            mapArr[2][4] = '*';
 
             String map = "";
-            int width = 5;
-            for(Room room : gameState.getMap().getRooms()){
-                if(width == 5){
-                    width = 0;
-                    map+= "\n";
+
+            for(int i = 0; i < mapArr.length; i++){
+                for(int j = 0; j < mapArr[i].length; j++){
+                    map += mapArr[i][j] + " ";
                 }
 
-                if(room == gameState.getMap().getCurrentRoom()){
-                    map+="X";
-                    width++;
-                }else{
-                    map+=room.getName().charAt(0);
-                    width++;
-                }
+                map += "\n";
             }
 
             return map;
+
+            
         }
 
         else if(!(gameState.getPlayer().getEquipment().isEmpty())){
